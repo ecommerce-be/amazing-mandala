@@ -1,16 +1,38 @@
 import type { CollectionConfig } from 'payload'
 
+import { isAdmin } from '../access'
+
 export const Media: CollectionConfig = {
   slug: 'media',
+  labels: {
+    singular: { it: 'Immagine', en: 'Media' },
+    plural: { it: 'Immagini', en: 'Media' },
+  },
   access: {
     read: () => true,
+    create: isAdmin,
+    update: isAdmin,
+    delete: isAdmin,
   },
   fields: [
     {
       name: 'alt',
+      label: { it: 'Testo alternativo', en: 'Alt text' },
       type: 'text',
       required: true,
+      localized: true,
+      admin: { description: 'Descrive la foto per chi usa uno screen reader e per Google.' },
     },
   ],
-  upload: true,
+  upload: {
+    mimeTypes: ['image/*'],
+    focalPoint: true,
+    imageSizes: [
+      { name: 'thumbnail', width: 400, height: 400, position: 'centre' },
+      { name: 'card', width: 800 },
+      { name: 'large', width: 1600 },
+      { name: 'zoom', width: 2560 },
+    ],
+    adminThumbnail: 'thumbnail',
+  },
 }
