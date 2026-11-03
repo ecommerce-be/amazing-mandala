@@ -235,7 +235,7 @@ export const Artworks: CollectionConfig = {
       min: 1,
       admin: { position: 'sidebar', step: 1 },
       // Una validazione personalizzata sostituisce quella standard: controlliamo tutto qui
-      validate: (value) => {
+      validate: (value: number | null | undefined) => {
         if (typeof value !== 'number') return 'Il prezzo è obbligatorio.'
         if (!Number.isInteger(value) || value < 1) return 'Usa un prezzo in euro interi, almeno 1 €.'
         return true
