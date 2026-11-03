@@ -1,0 +1,73 @@
+@import 'tailwindcss';
+
+/* Palette: cambiare ACTIVE_PALETTE in src/lib/theme.ts */
+[data-palette='legno'] {
+  --paper: #e9dcc6;
+  --paper-deep: #ddcdb2;
+  --ink: #1f2a44;
+  --ink-soft: #4a4f5f;
+  --accent: #d9a21b;
+  --wood: #5a3e2b;
+  --on-ink: #e9dcc6;
+}
+[data-palette='pirografia'] {
+  --paper: #2b211c;
+  --paper-deep: #3a2c25;
+  --ink: #eadbc4;
+  --ink-soft: #b9a48a;
+  --accent: #b8893b;
+  --wood: #6b4a33;
+  --on-ink: #2b211c;
+}
+[data-palette='galleria'] {
+  --paper: #f6f6f3;
+  --paper-deep: #ebebe6;
+  --ink: #232323;
+  --ink-soft: #6a6a66;
+  --accent: #2f6f6a;
+  --wood: #c9b79c;
+  --on-ink: #f6f6f3;
+}
+[data-palette='pigmenti'] {
+  --paper: #f2eee6;
+  --paper-deep: #e6dfd2;
+  --ink: #0e3b43;
+  --ink-soft: #4f6e73;
+  --accent: #b5446e;
+  --wood: #d8a441;
+  --on-ink: #f2eee6;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-deep: var(--paper-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-accent: var(--accent);
+  --color-wood: var(--wood);
+  --color-on-ink: var(--on-ink);
+  --font-display: var(--font-marcellus), Georgia, serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

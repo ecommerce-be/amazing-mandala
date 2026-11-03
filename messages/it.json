@@ -1,0 +1,44 @@
+{
+  "site": {
+    "name": "Amazing Mandala",
+    "tagline": "Quadri mandala incisi e dipinti a mano su legno",
+    "description": "Mandala incisi e dipinti a mano su legno. Ogni quadro è un pezzo unico."
+  },
+  "nav": {
+    "works": "Opere",
+    "language": "Lingua",
+    "switchTo": "English"
+  },
+  "home": {
+    "title": "Ogni mandala esiste una volta sola",
+    "intro": "Inciso nel legno, dipinto a mano, firmato. Quando un quadro trova casa, non viene rifatto.",
+    "cta": "Guarda le opere",
+    "latest": "Ultimi arrivi"
+  },
+  "catalog": {
+    "title": "Opere",
+    "intro": "Tutti i quadri sono pezzi unici. Quelli venduti restano qui come archivio.",
+    "empty": "Nessun quadro pubblicato al momento. Torna a trovarci presto.",
+    "count": "{count, plural, =1 {# opera} other {# opere}}"
+  },
+  "artwork": {
+    "sold": "Venduto",
+    "reserved": "Riservato",
+    "size": "{width} × {height} cm",
+    "details": "Caratteristiche",
+    "dimensions": "Dimensioni",
+    "depth": "Spessore",
+    "wood": "Legno",
+    "techniques": "Tecniche",
+    "hours": "Lavorazione",
+    "hoursValue": "{hours, plural, =1 {# ora} other {# ore}}",
+    "vatIncluded": "IVA inclusa",
+    "back": "Tutte le opere",
+    "soldNote": "Questo quadro ha già trovato casa.",
+    "reservedNote": "Qualcuno lo sta acquistando in questo momento.",
+    "comingSoon": "L'acquisto online arriva a breve."
+  },
+  "footer": {
+    "rights": "© {year} Amazing Mandala"
+  }
+}
