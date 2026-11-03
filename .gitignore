@@ -29,8 +29,18 @@ media/
 # Editor e OS
 .vscode/*
 !.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
 .idea/
 .DS_Store
 Thumbs.db
 *.tsbuildinfo
 next-env.d.ts
+
+# Varie (dal template Payload)
+*.pem
+.vercel
+.pnp
+.pnp.js
+blob-report/
+playwright/.cache/

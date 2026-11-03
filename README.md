@@ -11,6 +11,17 @@ E-commerce per quadri mandala incisi e dipinti a mano su legno: pezzi unici, ven
 - Tailwind CSS + shadcn/ui
 - Deploy su Google Cloud Run + Cloud SQL (europe-west)
 
+## Sviluppo locale
+
+Requisiti: Node.js 22.23.4+ (o 24.22.1+), Docker Desktop.
+
+```powershell
+Copy-Item .env.example .env   # poi imposta PAYLOAD_SECRET
+npm install
+npm run db:up                 # avvia Postgres in Docker
+npm run dev                   # http://localhost:3000 e http://localhost:3000/admin
+```
+
 ## Documentazione
 
 - [Documento di design](docs/design-document.pdf)
