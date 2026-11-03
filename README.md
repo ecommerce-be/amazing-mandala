@@ -36,6 +36,6 @@ npm run dev                   # http://localhost:3000 e http://localhost:3000/ad
 
 ## Convenzioni
 
-- `main` sempre rilasciabile, lavoro su feature branch + pull request
+- Si lavora direttamente su `main`; prima di ogni push lanciare `npm run lint` e `npm run build`. La CI controlla ogni push
 - Commit in formato [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `docs:`, `chore:`…)
 - Segreti solo in variabili d'ambiente, mai nel repo
