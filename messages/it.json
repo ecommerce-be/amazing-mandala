@@ -17,7 +17,7 @@
   },
   "catalog": {
     "title": "Opere",
-    "intro": "Tutti i quadri sono pezzi unici. Quelli venduti restano qui come archivio.",
+    "intro": "In sanscrito mandala significa cerchio. Da secoli è una forma usata per meditare: un centro e, intorno, simmetrie che si ripetono fino a riempire lo spazio. I nostri sono incisi e dipinti a mano su legno, e ognuno esiste una volta sola. Quelli venduti restano qui come archivio.",
     "empty": "Nessun quadro pubblicato al momento. Torna a trovarci presto.",
     "count": "{count, plural, =1 {# opera} other {# opere}}",
     "noMatch": "Nessun quadro corrisponde a questi filtri.",
@@ -36,7 +36,8 @@
     "back": "Tutte le opere",
     "soldNote": "Questo quadro ha già trovato casa.",
     "reservedNote": "Qualcuno lo sta acquistando in questo momento.",
-    "comingSoon": "L'acquisto online arriva a breve."
+    "comingSoon": "L'acquisto online arriva a breve.",
+    "meaning": "Significato"
   },
   "footer": {
     "rights": "© {year} Amazing Mandala"
@@ -73,6 +74,13 @@
       "under-150": "Fino a 150 €",
       "150-300": "Da 150 a 300 €",
       "over-300": "Oltre 300 €"
+    },
+    "sort": "Ordina per",
+    "sorts": {
+      "newest": "Più recenti",
+      "price-asc": "Prezzo crescente",
+      "price-desc": "Prezzo decrescente",
+      "title": "Nome A-Z"
     }
   }
 }

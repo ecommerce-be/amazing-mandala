@@ -17,7 +17,7 @@
   },
   "catalog": {
     "title": "Works",
-    "intro": "Every piece is one of a kind. Sold works stay here as an archive.",
+    "intro": "In Sanskrit, mandala means circle. For centuries it has been a form for meditation: a centre, surrounded by symmetries that repeat until they fill the space. Ours are engraved and hand-painted on wood, and each one exists only once. Sold pieces stay here as an archive.",
     "empty": "No works are published right now. Check back soon.",
     "count": "{count, plural, =1 {# work} other {# works}}",
     "noMatch": "No works match these filters.",
@@ -36,7 +36,8 @@
     "back": "All works",
     "soldNote": "This piece has already found a home.",
     "reservedNote": "Someone is buying it right now.",
-    "comingSoon": "Online checkout is coming soon."
+    "comingSoon": "Online checkout is coming soon.",
+    "meaning": "Meaning"
   },
   "footer": {
     "rights": "© {year} Amazing Mandala"
@@ -73,6 +74,13 @@
       "under-150": "Up to €150",
       "150-300": "€150 to €300",
       "over-300": "Over €300"
+    },
+    "sort": "Sort by",
+    "sorts": {
+      "newest": "Newest",
+      "price-asc": "Price, low to high",
+      "price-desc": "Price, high to low",
+      "title": "Name A-Z"
     }
   }
 }

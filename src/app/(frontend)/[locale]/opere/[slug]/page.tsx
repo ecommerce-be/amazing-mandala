@@ -84,6 +84,13 @@ export default async function ArtworkPage({ params }: Props) {
             )}
           </div>
 
+          {artwork.meaning && (
+            <>
+              <h2 className="mt-10 font-display text-xl">{t('meaning')}</h2>
+              <p className="mt-3 whitespace-pre-line leading-relaxed">{artwork.meaning}</p>
+            </>
+          )}
+
           <h2 className="mt-10 font-display text-xl">{t('details')}</h2>
           <dl className="mt-4 divide-y divide-ink/10 border-y border-ink/10">
             {details.map((d) => (

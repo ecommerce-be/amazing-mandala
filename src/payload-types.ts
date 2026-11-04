@@ -151,6 +151,10 @@ export interface Artwork {
     [k: string]: unknown;
   } | null;
   /**
+   * Cosa rappresenta il mandala e a cosa invita. Mostrato nella pagina del quadro.
+   */
+  meaning?: string | null;
+  /**
    * La prima foto è la copertina. Trascina per riordinare.
    */
   images?:
@@ -377,6 +381,7 @@ export interface ArtworksSelect<T extends boolean = true> {
   slug?: T;
   excerpt?: T;
   description?: T;
+  meaning?: T;
   images?:
     | T
     | {

@@ -1,7 +1,14 @@
 import { getTranslations } from 'next-intl/server'
 
 import { Link } from '@/i18n/navigation'
-import { type CatalogFilters as Filters, COLORS, PRICE_RANGES, SHAPES } from '@/lib/catalogFilters'
+import {
+  type CatalogFilters as Filters,
+  COLORS,
+  DEFAULT_SORT,
+  PRICE_RANGES,
+  SHAPES,
+  SORTS,
+} from '@/lib/catalogFilters'
 
 const field = 'flex flex-col gap-1.5 text-sm'
 const control =
@@ -44,6 +51,17 @@ export async function CatalogFilters({ filters, active }: { filters: Filters; ac
           {Object.keys(PRICE_RANGES).map((p) => (
             <option key={p} value={p}>
               {t(`prices.${p}`)}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label className={field}>
+        <span className="text-ink-soft">{t('sort')}</span>
+        <select name="sort" defaultValue={filters.sort ?? DEFAULT_SORT} className={control}>
+          {Object.keys(SORTS).map((k) => (
+            <option key={k} value={k}>
+              {t(`sorts.${k}`)}
             </option>
           ))}
         </select>

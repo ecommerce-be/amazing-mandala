@@ -79,6 +79,15 @@ export const Artworks: CollectionConfig = {
               localized: true,
             },
             {
+              name: 'meaning',
+              label: { it: 'Significato', en: 'Meaning' },
+              type: 'textarea',
+              localized: true,
+              admin: {
+                description: 'Cosa rappresenta il mandala e a cosa invita. Mostrato nella pagina del quadro.',
+              },
+            },
+            {
               name: 'images',
               label: { it: 'Foto', en: 'Images' },
               type: 'array',

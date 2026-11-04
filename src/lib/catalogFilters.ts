@@ -14,7 +14,18 @@ export const PRICE_RANGES = {
   'over-300': [300, null],
 } as const
 
+// Ordinamenti: chiave URL -> campo Payload
+export const SORTS = {
+  newest: '-publishedAt',
+  'price-asc': 'price',
+  'price-desc': '-price',
+  title: 'title',
+} as const
+export type SortKey = keyof typeof SORTS
+export const DEFAULT_SORT: SortKey = 'newest'
+
 export type CatalogFilters = {
+  sort?: SortKey
   shape?: (typeof SHAPES)[number]
   color?: (typeof COLORS)[number]
   price?: keyof typeof PRICE_RANGES
@@ -30,7 +41,9 @@ const pick = <T extends string>(list: readonly T[], v: string | undefined) =>
 // Legge i filtri dall'URL ignorando valori non validi
 export function parseFilters(params: RawParams): CatalogFilters {
   const price = one(params.price)
+  const sort = one(params.sort)
   return {
+    sort: sort && sort in SORTS && sort !== DEFAULT_SORT ? (sort as SortKey) : undefined,
     shape: pick(SHAPES, one(params.shape)),
     color: pick(COLORS, one(params.color)),
     price: price && price in PRICE_RANGES ? (price as CatalogFilters['price']) : undefined,
@@ -58,6 +71,7 @@ export function filtersToWhere(f: CatalogFilters): Where[] {
 // Parametri URL minimi per i filtri attivi (niente chiavi vuote)
 export function filtersToQuery(f: CatalogFilters): Record<string, string> {
   const q: Record<string, string> = {}
+  if (f.sort) q.sort = f.sort
   if (f.shape) q.shape = f.shape
   if (f.color) q.color = f.color
   if (f.price) q.price = f.price

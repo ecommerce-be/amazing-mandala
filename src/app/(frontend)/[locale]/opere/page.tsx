@@ -40,7 +40,7 @@ export default async function CatalogPage({ params, searchParams }: Props) {
       <header className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <h1 className="font-display text-5xl">{t('title')}</h1>
-          <p className="mt-4 max-w-[56ch] text-ink-soft">{t('intro')}</p>
+          <p className="mt-4 max-w-[62ch] leading-relaxed text-ink-soft">{t('intro')}</p>
         </div>
         <p className="text-sm text-ink-soft" aria-live="polite">
           {t('count', { count: totalDocs })}

@@ -4,7 +4,7 @@ import { getPayload, type Where } from 'payload'
 import type { Locale } from '@/i18n/routing'
 import type { Artwork, Media } from '@/payload-types'
 
-import { type CatalogFilters, filtersToWhere } from './catalogFilters'
+import { type CatalogFilters, DEFAULT_SORT, filtersToWhere, SORTS } from './catalogFilters'
 
 // Il sito pubblico mostra solo questi stati (i venduti restano come archivio)
 const PUBLIC_STATUSES: Artwork['status'][] = ['published', 'reserved', 'sold']
@@ -20,7 +20,7 @@ export async function listArtworks(
     collection: 'artworks',
     locale,
     where: { and: [publicWhere, ...filtersToWhere(opts.filters ?? {})] },
-    sort: '-publishedAt',
+    sort: SORTS[opts.filters?.sort ?? DEFAULT_SORT],
     limit: opts.limit ?? 60,
     depth: 1,
     overrideAccess: false,
