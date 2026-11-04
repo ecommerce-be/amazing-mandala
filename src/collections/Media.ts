@@ -1,6 +1,7 @@
 import type { CollectionConfig } from 'payload'
 
 import { isAdmin } from '../access'
+import { revalidateAfterChange, revalidateAfterDelete } from '../hooks/revalidateSite'
 
 export const Media: CollectionConfig = {
   slug: 'media',
@@ -13,6 +14,10 @@ export const Media: CollectionConfig = {
     create: isAdmin,
     update: isAdmin,
     delete: isAdmin,
+  },
+  hooks: {
+    afterChange: [revalidateAfterChange],
+    afterDelete: [revalidateAfterDelete],
   },
   fields: [
     {

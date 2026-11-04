@@ -196,7 +196,6 @@ export interface Artwork {
         | 'natural'
       )[]
     | null;
-  workHours?: number | null;
   status: 'draft' | 'published' | 'reserved' | 'sold' | 'archived';
   price: number;
   featured?: boolean | null;
@@ -393,7 +392,6 @@ export interface ArtworksSelect<T extends boolean = true> {
   wood?: T;
   techniques?: T;
   palette?: T;
-  workHours?: T;
   status?: T;
   price?: T;
   featured?: T;

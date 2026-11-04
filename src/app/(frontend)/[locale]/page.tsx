@@ -5,6 +5,9 @@ import { Link } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { listArtworks } from '@/lib/artworks'
 
+// Rete di sicurezza: oltre alla rigenerazione al salvataggio, aggiorna ogni ora
+export const revalidate = 3600
+
 export default async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params
   setRequestLocale(locale)

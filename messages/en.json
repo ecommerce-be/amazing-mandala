@@ -19,7 +19,9 @@
     "title": "Works",
     "intro": "Every piece is one of a kind. Sold works stay here as an archive.",
     "empty": "No works are published right now. Check back soon.",
-    "count": "{count, plural, =1 {# work} other {# works}}"
+    "count": "{count, plural, =1 {# work} other {# works}}",
+    "noMatch": "No works match these filters.",
+    "showAll": "Show all works"
   },
   "artwork": {
     "sold": "Sold",
@@ -30,8 +32,6 @@
     "depth": "Depth",
     "wood": "Wood",
     "techniques": "Techniques",
-    "hours": "Making",
-    "hoursValue": "{hours, plural, =1 {# hour} other {# hours}}",
     "vatIncluded": "VAT included",
     "back": "All works",
     "soldNote": "This piece has already found a home.",
@@ -40,5 +40,39 @@
   },
   "footer": {
     "rights": "© {year} Amazing Mandala"
+  },
+  "filters": {
+    "shape": "Shape",
+    "color": "Colour",
+    "price": "Price",
+    "all": "Any",
+    "available": "Available only",
+    "apply": "Filter",
+    "reset": "Clear filters",
+    "shapes": {
+      "round": "Round",
+      "square": "Square",
+      "rectangular": "Rectangular"
+    },
+    "colors": {
+      "red": "Red",
+      "orange": "Orange",
+      "yellow": "Yellow",
+      "green": "Green",
+      "blue": "Blue",
+      "purple": "Purple",
+      "pink": "Pink",
+      "brown": "Brown",
+      "black": "Black",
+      "white": "White",
+      "gold": "Gold",
+      "silver": "Silver",
+      "natural": "Natural wood"
+    },
+    "prices": {
+      "under-150": "Up to €150",
+      "150-300": "€150 to €300",
+      "over-300": "Over €300"
+    }
   }
 }

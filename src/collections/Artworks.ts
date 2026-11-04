@@ -2,6 +2,7 @@ import type { CollectionConfig, Where } from 'payload'
 import { slugField } from 'payload'
 
 import { isAdmin } from '../access'
+import { revalidateAfterChange, revalidateAfterDelete } from '../hooks/revalidateSite'
 
 export const ARTWORK_STATUSES = ['draft', 'published', 'reserved', 'sold', 'archived'] as const
 export type ArtworkStatus = (typeof ARTWORK_STATUSES)[number]
@@ -32,6 +33,8 @@ export const Artworks: CollectionConfig = {
     delete: isAdmin,
   },
   hooks: {
+    afterChange: [revalidateAfterChange],
+    afterDelete: [revalidateAfterDelete],
     beforeChange: [
       ({ data, originalDoc }) => {
         // Data di prima pubblicazione, impostata una sola volta
@@ -199,12 +202,6 @@ export const Artworks: CollectionConfig = {
                 { label: { it: 'Argento', en: 'Silver' }, value: 'silver' },
                 { label: { it: 'Legno naturale', en: 'Natural wood' }, value: 'natural' },
               ],
-            },
-            {
-              name: 'workHours',
-              label: { it: 'Ore di lavorazione', en: 'Hours of work' },
-              type: 'number',
-              min: 0,
             },
           ],
         },

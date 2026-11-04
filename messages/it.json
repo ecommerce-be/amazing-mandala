@@ -19,7 +19,9 @@
     "title": "Opere",
     "intro": "Tutti i quadri sono pezzi unici. Quelli venduti restano qui come archivio.",
     "empty": "Nessun quadro pubblicato al momento. Torna a trovarci presto.",
-    "count": "{count, plural, =1 {# opera} other {# opere}}"
+    "count": "{count, plural, =1 {# opera} other {# opere}}",
+    "noMatch": "Nessun quadro corrisponde a questi filtri.",
+    "showAll": "Mostra tutte le opere"
   },
   "artwork": {
     "sold": "Venduto",
@@ -30,8 +32,6 @@
     "depth": "Spessore",
     "wood": "Legno",
     "techniques": "Tecniche",
-    "hours": "Lavorazione",
-    "hoursValue": "{hours, plural, =1 {# ora} other {# ore}}",
     "vatIncluded": "IVA inclusa",
     "back": "Tutte le opere",
     "soldNote": "Questo quadro ha già trovato casa.",
@@ -40,5 +40,39 @@
   },
   "footer": {
     "rights": "© {year} Amazing Mandala"
+  },
+  "filters": {
+    "shape": "Forma",
+    "color": "Colore",
+    "price": "Prezzo",
+    "all": "Qualsiasi",
+    "available": "Solo disponibili",
+    "apply": "Filtra",
+    "reset": "Azzera filtri",
+    "shapes": {
+      "round": "Tondo",
+      "square": "Quadrato",
+      "rectangular": "Rettangolare"
+    },
+    "colors": {
+      "red": "Rosso",
+      "orange": "Arancione",
+      "yellow": "Giallo",
+      "green": "Verde",
+      "blue": "Blu",
+      "purple": "Viola",
+      "pink": "Rosa",
+      "brown": "Marrone",
+      "black": "Nero",
+      "white": "Bianco",
+      "gold": "Oro",
+      "silver": "Argento",
+      "natural": "Legno naturale"
+    },
+    "prices": {
+      "under-150": "Fino a 150 €",
+      "150-300": "Da 150 a 300 €",
+      "over-300": "Oltre 300 €"
+    }
   }
 }

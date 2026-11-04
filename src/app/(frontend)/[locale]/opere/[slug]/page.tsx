@@ -34,7 +34,6 @@ export default async function ArtworkPage({ params }: Props) {
   if (artwork.depthCm) details.push({ label: t('depth'), value: `${artwork.depthCm} cm` })
   if (artwork.wood) details.push({ label: t('wood'), value: artwork.wood })
   if (artwork.techniques?.length) details.push({ label: t('techniques'), value: artwork.techniques.join(', ') })
-  if (artwork.workHours) details.push({ label: t('hours'), value: t('hoursValue', { hours: artwork.workHours }) })
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-8">
