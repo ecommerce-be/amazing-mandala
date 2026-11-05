@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
+import { AddToCart } from '@/components/AddToCart'
 import { Link } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { formatPrice, getArtworkBySlug, imageOf } from '@/lib/artworks'
@@ -77,9 +78,13 @@ export default async function ArtworkPage({ params }: Props) {
               <>
                 <p className="text-3xl tabular-nums">{formatPrice(artwork.price, locale)}</p>
                 <p className="mt-1 text-sm text-ink-soft">{t('vatIncluded')}</p>
-                <p className="mt-6 text-sm text-ink-soft">
-                  {artwork.status === 'reserved' ? t('reservedNote') : t('comingSoon')}
-                </p>
+                <div className="mt-6">
+                  {artwork.status === 'reserved' ? (
+                    <p className="text-sm text-ink-soft">{t('reservedNote')}</p>
+                  ) : (
+                    <AddToCart artworkId={artwork.id} />
+                  )}
+                </div>
               </>
             )}
           </div>

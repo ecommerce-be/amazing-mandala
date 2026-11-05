@@ -31,7 +31,6 @@
     "back": "All works",
     "soldNote": "This piece has already found a home.",
     "reservedNote": "Someone is buying it right now.",
-    "comingSoon": "Online checkout is coming soon.",
     "meaning": "Meaning"
   },
   "footer": {
@@ -94,5 +93,31 @@
     "galleryTitle": "Generative mandalas",
     "galleryIntro": "Alongside the wooden works I explore generative mandalas: shapes built from rules of symmetry, which become studies in colour and rhythm. They are not for sale.",
     "cta": "See the works"
+  },
+  "cart": {
+    "title": "Cart",
+    "count": "{count, plural, =1 {# piece in cart} other {# pieces in cart}}",
+    "add": "Add to cart",
+    "alreadyInCart": "It's in your cart.",
+    "goToCart": "Go to cart",
+    "empty": "Your cart is empty.",
+    "browse": "See the works",
+    "remove": "Remove",
+    "subtotal": "Artworks",
+    "shipping": "Insured shipping",
+    "total": "Total",
+    "vatIncluded": "VAT included.",
+    "checkout": "Go to payment",
+    "reservationNote": "While you pay, the pieces stay reserved for you for 30 minutes.",
+    "soldMeanwhile": "It has been sold in the meantime.",
+    "reservedMeanwhile": "Someone is buying it right now.",
+    "cancelled": "Payment cancelled. The pieces are back in your cart.",
+    "justSold": "One of the pieces was just taken by someone else. Check your cart and try again."
+  },
+  "order": {
+    "title": "Thank you!",
+    "body": "We've received your order. The piece will be carefully packed and shipped with tracking.",
+    "bodyWithEmail": "We've received your order. The piece will be carefully packed and shipped with tracking: we'll write to {email}.",
+    "backToShop": "Back to the shop"
   }
 }

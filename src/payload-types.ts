@@ -68,6 +68,7 @@ export interface Config {
   blocks: {};
   collections: {
     artworks: Artwork;
+    orders: Order;
     media: Media;
     users: User;
     'payload-kv': PayloadKv;
@@ -78,6 +79,7 @@ export interface Config {
   collectionsJoins: {};
   collectionsSelect: {
     artworks: ArtworksSelect<false> | ArtworksSelect<true>;
+    orders: OrdersSelect<false> | OrdersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -273,6 +275,47 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders".
+ */
+export interface Order {
+  id: number;
+  orderNumber?: string | null;
+  status: 'pending' | 'paid' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
+  customerName?: string | null;
+  email?: string | null;
+  phone?: string | null;
+  shippingAddress?: {
+    name?: string | null;
+    line1?: string | null;
+    line2?: string | null;
+    postalCode?: string | null;
+    city?: string | null;
+    state?: string | null;
+    country?: string | null;
+  };
+  items?:
+    | {
+        artwork?: (number | null) | Artwork;
+        title: string;
+        priceCents: number;
+        id?: string | null;
+      }[]
+    | null;
+  subtotal?: number | null;
+  shipping?: number | null;
+  total?: number | null;
+  trackingNumber?: string | null;
+  trackingUrl?: string | null;
+  notes?: string | null;
+  locale?: string | null;
+  stripeSessionId?: string | null;
+  stripePaymentIntentId?: string | null;
+  paidAt?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -324,6 +367,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'artworks';
         value: number | Artwork;
+      } | null)
+    | ({
+        relationTo: 'orders';
+        value: number | Order;
       } | null)
     | ({
         relationTo: 'media';
@@ -406,6 +453,48 @@ export interface ArtworksSelect<T extends boolean = true> {
   featured?: T;
   publishedAt?: T;
   reservedUntil?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders_select".
+ */
+export interface OrdersSelect<T extends boolean = true> {
+  orderNumber?: T;
+  status?: T;
+  customerName?: T;
+  email?: T;
+  phone?: T;
+  shippingAddress?:
+    | T
+    | {
+        name?: T;
+        line1?: T;
+        line2?: T;
+        postalCode?: T;
+        city?: T;
+        state?: T;
+        country?: T;
+      };
+  items?:
+    | T
+    | {
+        artwork?: T;
+        title?: T;
+        priceCents?: T;
+        id?: T;
+      };
+  subtotal?: T;
+  shipping?: T;
+  total?: T;
+  trackingNumber?: T;
+  trackingUrl?: T;
+  notes?: T;
+  locale?: T;
+  stripeSessionId?: T;
+  stripePaymentIntentId?: T;
+  paidAt?: T;
   updatedAt?: T;
   createdAt?: T;
 }

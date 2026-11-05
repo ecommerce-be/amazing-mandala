@@ -10,6 +10,7 @@ import { it } from '@payloadcms/translations/languages/it'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Artworks } from './collections/Artworks'
+import { Orders } from './collections/Orders'
 import { AboutPage } from './globals/AboutPage'
 
 const filename = fileURLToPath(import.meta.url)
@@ -22,7 +23,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Artworks, Media, Users],
+  collections: [Artworks, Orders, Media, Users],
   globals: [AboutPage],
   localization: {
     locales: [

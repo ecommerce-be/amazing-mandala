@@ -5,6 +5,7 @@ import type { Locale } from '@/i18n/routing'
 import type { Artwork, Media } from '@/payload-types'
 
 import { type CatalogFilters, DEFAULT_SORT, filtersToWhere, SORTS } from './catalogFilters'
+import { releaseExpiredReservations } from './reservations'
 
 // Il sito pubblico mostra solo questi stati (i venduti restano come archivio)
 const PUBLIC_STATUSES: Artwork['status'][] = ['published', 'reserved', 'sold']
@@ -15,6 +16,7 @@ export async function listArtworks(
   locale: Locale,
   opts: { limit?: number; filters?: CatalogFilters } = {},
 ) {
+  await releaseExpiredReservations()
   const payload = await getPayload({ config })
   const result = await payload.find({
     collection: 'artworks',
@@ -29,6 +31,7 @@ export async function listArtworks(
 }
 
 export async function getArtworkBySlug(locale: Locale, slug: string) {
+  await releaseExpiredReservations()
   const payload = await getPayload({ config })
   const result = await payload.find({
     collection: 'artworks',
@@ -68,4 +71,20 @@ export function formatPrice(euros: number, locale: Locale) {
     currency: 'EUR',
     maximumFractionDigits: 0,
   }).format(euros)
+}
+
+export async function getArtworksByIds(locale: Locale, ids: number[]) {
+  if (ids.length === 0) return []
+  await releaseExpiredReservations()
+  const payload = await getPayload({ config })
+  const result = await payload.find({
+    collection: 'artworks',
+    locale,
+    where: { and: [publicWhere, { id: { in: ids } }] },
+    limit: ids.length,
+    depth: 1,
+    overrideAccess: false,
+  })
+  // stesso ordine del carrello
+  return ids.map((id) => result.docs.find((d) => d.id === id)).filter((d): d is Artwork => Boolean(d))
 }

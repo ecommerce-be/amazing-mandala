@@ -31,7 +31,6 @@
     "back": "Tutte le opere",
     "soldNote": "Questo quadro ha già trovato casa.",
     "reservedNote": "Qualcuno lo sta acquistando in questo momento.",
-    "comingSoon": "L'acquisto online arriva a breve.",
     "meaning": "Significato"
   },
   "footer": {
@@ -94,5 +93,31 @@
     "galleryTitle": "Mandala generativi",
     "galleryIntro": "Accanto alle opere su legno esploro i mandala generativi: forme create da regole di simmetria, che diventano studi di colore e ritmo. Non sono in vendita.",
     "cta": "Guarda le opere"
+  },
+  "cart": {
+    "title": "Carrello",
+    "count": "{count, plural, =1 {# quadro nel carrello} other {# quadri nel carrello}}",
+    "add": "Aggiungi al carrello",
+    "alreadyInCart": "È nel tuo carrello.",
+    "goToCart": "Vai al carrello",
+    "empty": "Il carrello è vuoto.",
+    "browse": "Guarda le opere",
+    "remove": "Rimuovi",
+    "subtotal": "Quadri",
+    "shipping": "Spedizione assicurata",
+    "total": "Totale",
+    "vatIncluded": "IVA inclusa.",
+    "checkout": "Procedi al pagamento",
+    "reservationNote": "Durante il pagamento i quadri restano riservati per te per 30 minuti.",
+    "soldMeanwhile": "Nel frattempo è stato venduto.",
+    "reservedMeanwhile": "Qualcuno lo sta acquistando in questo momento.",
+    "cancelled": "Pagamento annullato. I quadri sono di nuovo nel carrello.",
+    "justSold": "Uno dei quadri è appena stato preso da qualcun altro. Controlla il carrello e riprova."
+  },
+  "order": {
+    "title": "Grazie!",
+    "body": "Abbiamo ricevuto il tuo ordine. Il quadro verrà imballato con cura e spedito con tracking.",
+    "bodyWithEmail": "Abbiamo ricevuto il tuo ordine. Il quadro verrà imballato con cura e spedito con tracking: ti scriveremo a {email}.",
+    "backToShop": "Torna al negozio"
   }
 }

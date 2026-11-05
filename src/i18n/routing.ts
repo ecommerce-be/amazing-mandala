@@ -9,6 +9,8 @@ export const routing = defineRouting({
     '/opere': { it: '/opere', en: '/works' },
     '/opere/[slug]': { it: '/opere/[slug]', en: '/works/[slug]' },
     '/un-mandala-per-sempre': { it: '/un-mandala-per-sempre', en: '/a-mandala-forever' },
+    '/carrello': { it: '/carrello', en: '/cart' },
+    '/ordine/confermato': { it: '/ordine/confermato', en: '/order/confirmed' },
   },
 })
 

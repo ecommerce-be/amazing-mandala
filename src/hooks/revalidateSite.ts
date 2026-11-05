@@ -7,7 +7,7 @@ import type {
 
 // Rigenera le pagine del sito quando un quadro cambia (anche dal checkout).
 // Fuori da Next.js (script, test) revalidatePath non è disponibile: lo ignoriamo.
-function revalidate() {
+export function revalidateSite() {
   try {
     revalidatePath('/', 'layout')
   } catch {
@@ -16,16 +16,16 @@ function revalidate() {
 }
 
 export const revalidateAfterChange: CollectionAfterChangeHook = ({ doc }) => {
-  revalidate()
+  revalidateSite()
   return doc
 }
 
 export const revalidateAfterDelete: CollectionAfterDeleteHook = ({ doc }) => {
-  revalidate()
+  revalidateSite()
   return doc
 }
 
 export const revalidateGlobal: GlobalAfterChangeHook = ({ doc }) => {
-  revalidate()
+  revalidateSite()
   return doc
 }
