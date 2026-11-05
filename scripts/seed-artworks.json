@@ -1,0 +1,526 @@
+[
+ {
+  "file": "mandala-01.jpg",
+  "slug": "seed-01",
+  "title": {
+   "it": "Girasole rosso",
+   "en": "Red sunflower"
+  },
+  "shape": "square",
+  "widthCm": 50,
+  "heightCm": 50,
+  "price": 520,
+  "palette": [
+   "red"
+  ],
+  "featured": true
+ },
+ {
+  "file": "mandala-02.jpg",
+  "slug": "seed-02",
+  "title": {
+   "it": "Arcobaleno notturno",
+   "en": "Night rainbow"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 30,
+  "price": 430,
+  "palette": [
+   "blue",
+   "red"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-03.jpg",
+  "slug": "seed-03",
+  "title": {
+   "it": "Costellazione",
+   "en": "Constellation"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 15,
+  "price": 340,
+  "palette": [
+   "brown",
+   "red",
+   "orange"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-04.jpg",
+  "slug": "seed-04",
+  "title": {
+   "it": "Om",
+   "en": "Om"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 45,
+  "price": 250,
+  "palette": [
+   "red",
+   "black"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-05.jpg",
+  "slug": "seed-05",
+  "title": {
+   "it": "Sole d'acqua",
+   "en": "Water sun"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 35,
+  "price": 160,
+  "palette": [
+   "blue",
+   "orange"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-06.jpg",
+  "slug": "seed-06",
+  "title": {
+   "it": "Hamsa",
+   "en": "Hamsa"
+  },
+  "shape": "other",
+  "widthCm": 35,
+  "heightCm": 50,
+  "price": 530,
+  "palette": [
+   "blue",
+   "orange",
+   "brown",
+   "silver"
+  ],
+  "featured": true
+ },
+ {
+  "file": "mandala-07.jpg",
+  "slug": "seed-07",
+  "title": {
+   "it": "Ruota cremisi",
+   "en": "Crimson wheel"
+  },
+  "shape": "square",
+  "widthCm": 50,
+  "heightCm": 50,
+  "price": 440,
+  "palette": [
+   "brown",
+   "red",
+   "blue"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-09.jpg",
+  "slug": "seed-09",
+  "title": {
+   "it": "Corona d'oro",
+   "en": "Golden crown"
+  },
+  "shape": "square",
+  "widthCm": 50,
+  "heightCm": 50,
+  "price": 260,
+  "palette": [
+   "brown",
+   "blue",
+   "orange"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-10.jpg",
+  "slug": "seed-10",
+  "title": {
+   "it": "Caleidoscopio",
+   "en": "Kaleidoscope"
+  },
+  "shape": "square",
+  "widthCm": 50,
+  "heightCm": 50,
+  "price": 170,
+  "palette": [
+   "blue",
+   "gold",
+   "green",
+   "black"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-11.jpg",
+  "slug": "seed-11",
+  "title": {
+   "it": "Fuoco",
+   "en": "Fire"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 45,
+  "price": 540,
+  "palette": [
+   "red"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-12.jpg",
+  "slug": "seed-12",
+  "title": {
+   "it": "Onda",
+   "en": "Wave"
+  },
+  "shape": "square",
+  "widthCm": 50,
+  "heightCm": 45,
+  "price": 450,
+  "palette": [
+   "blue"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-13.jpg",
+  "slug": "seed-13",
+  "title": {
+   "it": "Fiore della Vita e rombo",
+   "en": "Flower of Life and diamond"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 35,
+  "price": 360,
+  "palette": [
+   "blue",
+   "orange",
+   "brown"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-14.jpg",
+  "slug": "seed-14",
+  "title": {
+   "it": "Vortice",
+   "en": "Vortex"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 35,
+  "price": 270,
+  "palette": [
+   "blue",
+   "orange",
+   "gold"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-15.jpg",
+  "slug": "seed-15",
+  "title": {
+   "it": "Trittico verde",
+   "en": "Green triptych"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 30,
+  "price": 180,
+  "palette": [
+   "blue",
+   "green",
+   "orange"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-17.jpg",
+  "slug": "seed-17",
+  "title": {
+   "it": "Metà e metà",
+   "en": "Half and half"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 30,
+  "price": 460,
+  "palette": [
+   "red",
+   "brown"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-18.jpg",
+  "slug": "seed-18",
+  "title": {
+   "it": "Scacchiera",
+   "en": "Chessboard"
+  },
+  "shape": "rectangular",
+  "widthCm": 15,
+  "heightCm": 50,
+  "price": 370,
+  "palette": [
+   "blue",
+   "silver"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-19.jpg",
+  "slug": "seed-19",
+  "title": {
+   "it": "Buddha nel loto",
+   "en": "Buddha in the lotus"
+  },
+  "shape": "square",
+  "widthCm": 50,
+  "heightCm": 50,
+  "price": 280,
+  "palette": [
+   "blue",
+   "orange"
+  ],
+  "featured": true
+ },
+ {
+  "file": "mandala-20.jpg",
+  "slug": "seed-20",
+  "title": {
+   "it": "Infinito",
+   "en": "Infinity"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 30,
+  "price": 190,
+  "palette": [
+   "gold",
+   "brown",
+   "blue"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-21.jpg",
+  "slug": "seed-21",
+  "title": {
+   "it": "Tre mosaici",
+   "en": "Three mosaics"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 30,
+  "price": 560,
+  "palette": [
+   "blue",
+   "red",
+   "orange"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-22.jpg",
+  "slug": "seed-22",
+  "title": {
+   "it": "Terra",
+   "en": "Earth"
+  },
+  "shape": "square",
+  "widthCm": 50,
+  "heightCm": 50,
+  "price": 470,
+  "palette": [
+   "brown",
+   "red"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-23.jpg",
+  "slug": "seed-23",
+  "title": {
+   "it": "Stella blu",
+   "en": "Blue star"
+  },
+  "shape": "square",
+  "widthCm": 50,
+  "heightCm": 50,
+  "price": 380,
+  "palette": [
+   "blue",
+   "orange"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-24.jpg",
+  "slug": "seed-24",
+  "title": {
+   "it": "Fiamme",
+   "en": "Flames"
+  },
+  "shape": "square",
+  "widthCm": 50,
+  "heightCm": 50,
+  "price": 290,
+  "palette": [
+   "red",
+   "orange",
+   "blue"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-25.jpg",
+  "slug": "seed-25",
+  "title": {
+   "it": "Rami d'oro",
+   "en": "Golden branches"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 35,
+  "price": 200,
+  "palette": [
+   "blue"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-26.jpg",
+  "slug": "seed-26",
+  "title": {
+   "it": "Tre colori",
+   "en": "Three colours"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 20,
+  "price": 570,
+  "palette": [
+   "red",
+   "blue",
+   "green"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-27.jpg",
+  "slug": "seed-27",
+  "title": {
+   "it": "Fiore della Vita",
+   "en": "Flower of Life"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 45,
+  "price": 480,
+  "palette": [
+   "green",
+   "blue",
+   "silver"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-28.jpg",
+  "slug": "seed-28",
+  "title": {
+   "it": "Nebulosa",
+   "en": "Nebula"
+  },
+  "shape": "square",
+  "widthCm": 50,
+  "heightCm": 50,
+  "price": 390,
+  "palette": [
+   "blue",
+   "pink",
+   "brown"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-29.jpg",
+  "slug": "seed-29",
+  "title": {
+   "it": "Intreccio",
+   "en": "Weave"
+  },
+  "shape": "square",
+  "widthCm": 50,
+  "heightCm": 50,
+  "price": 300,
+  "palette": [
+   "brown",
+   "orange"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-30.jpg",
+  "slug": "seed-30",
+  "title": {
+   "it": "Sole arcobaleno",
+   "en": "Rainbow sun"
+  },
+  "shape": "rectangular",
+  "widthCm": 50,
+  "heightCm": 35,
+  "price": 210,
+  "palette": [
+   "blue",
+   "pink",
+   "orange"
+  ],
+  "featured": true
+ },
+ {
+  "file": "mandala-32.jpg",
+  "slug": "seed-32",
+  "title": {
+   "it": "Due mandala",
+   "en": "Two mandalas"
+  },
+  "shape": "rectangular",
+  "widthCm": 35,
+  "heightCm": 50,
+  "price": 490,
+  "palette": [
+   "orange",
+   "yellow",
+   "blue"
+  ],
+  "featured": false
+ },
+ {
+  "file": "mandala-33.jpg",
+  "slug": "seed-33",
+  "title": {
+   "it": "Yin e Yang",
+   "en": "Yin and Yang"
+  },
+  "shape": "square",
+  "widthCm": 50,
+  "heightCm": 50,
+  "price": 400,
+  "palette": [
+   "blue",
+   "silver"
+  ],
+  "featured": false
+ }
+]

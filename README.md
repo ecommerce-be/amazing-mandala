@@ -22,6 +22,15 @@ npm run db:up                 # avvia Postgres in Docker
 npm run dev                   # http://localhost:3000 e http://localhost:3000/admin
 ```
 
+### Dati di prova
+
+```powershell
+npm run seed         # importa 30 quadri di prova con le foto (slug "seed-…")
+npm run seed:reset   # li rimuove
+```
+
+Le foto vengono lette da `C:\Users\39347\Pictures\foto mandala\ecommerce`; per un'altra cartella impostare `$env:SEED_PHOTOS_DIR`.
+
 ## Documentazione
 
 - [Documento di design](docs/design-document.pdf)

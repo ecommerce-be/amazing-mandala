@@ -10,6 +10,7 @@ import { it } from '@payloadcms/translations/languages/it'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Artworks } from './collections/Artworks'
+import { AboutPage } from './globals/AboutPage'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -22,6 +23,7 @@ export default buildConfig({
     },
   },
   collections: [Artworks, Media, Users],
+  globals: [AboutPage],
   localization: {
     locales: [
       { label: 'Italiano', code: 'it' },

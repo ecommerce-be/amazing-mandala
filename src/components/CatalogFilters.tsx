@@ -83,7 +83,7 @@ export async function CatalogFilters({ filters, active }: { filters: Filters; ac
           {t('apply')}
         </button>
         {active && (
-          <Link href="/opere" className="text-sm text-ink-soft underline-offset-4 hover:text-ink hover:underline">
+          <Link href="/" className="text-sm text-ink-soft underline-offset-4 hover:text-ink hover:underline">
             {t('reset')}
           </Link>
         )}

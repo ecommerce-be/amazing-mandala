@@ -61,14 +61,12 @@ export const Artworks: CollectionConfig = {
               label: { it: 'Titolo', en: 'Title' },
               type: 'text',
               required: true,
-              localized: true,
             },
             slugField({ useAsSlug: 'title' }),
             {
               name: 'excerpt',
               label: { it: 'Descrizione breve', en: 'Short description' },
               type: 'textarea',
-              localized: true,
               maxLength: 300,
               admin: { description: 'Usata nelle card del catalogo e nei risultati di Google.' },
             },
@@ -76,13 +74,11 @@ export const Artworks: CollectionConfig = {
               name: 'description',
               label: { it: 'Descrizione', en: 'Description' },
               type: 'richText',
-              localized: true,
             },
             {
               name: 'meaning',
               label: { it: 'Significato', en: 'Meaning' },
               type: 'textarea',
-              localized: true,
               admin: {
                 description: 'Cosa rappresenta il mandala e a cosa invita. Mostrato nella pagina del quadro.',
               },
@@ -179,7 +175,6 @@ export const Artworks: CollectionConfig = {
               name: 'wood',
               label: { it: 'Essenza del legno', en: 'Wood' },
               type: 'text',
-              localized: true,
               admin: { description: 'Es. betulla, pioppo, noce.' },
             },
             {
@@ -187,7 +182,6 @@ export const Artworks: CollectionConfig = {
               label: { it: 'Tecniche', en: 'Techniques' },
               type: 'text',
               hasMany: true,
-              localized: true,
               admin: { description: 'Una per voce, es. incisione, pittura acrilica.' },
             },
             {

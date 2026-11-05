@@ -16,7 +16,9 @@
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --import=tsx/esm\" playwright test --config=playwright.config.ts",
     "test:int": "cross-env NODE_OPTIONS=--no-deprecation vitest run --config ./vitest.config.mts",
     "db:up": "docker compose up -d",
-    "db:down": "docker compose down"
+    "db:down": "docker compose down",
+    "seed": "cross-env NODE_OPTIONS=--no-deprecation payload run scripts/seed-artworks.ts",
+    "seed:reset": "cross-env SEED_RESET_ONLY=1 NODE_OPTIONS=--no-deprecation payload run scripts/seed-artworks.ts"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.92.1",

@@ -89,8 +89,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('it' | 'en') | ('it' | 'en')[];
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'about-page': AboutPage;
+  };
+  globalsSelect: {
+    'about-page': AboutPageSelect<false> | AboutPageSelect<true>;
+  };
   locale: 'it' | 'en';
   widgets: {
     collections: CollectionsWidget;
@@ -529,6 +533,65 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-page".
+ */
+export interface AboutPage {
+  id: number;
+  /**
+   * Vuoto = "Un Mandala per sempre".
+   */
+  title?: string | null;
+  subtitle?: string | null;
+  /**
+   * Vuoto = testi predefiniti (Le opere, La mia visione, Mandala generativi).
+   */
+  sections?:
+    | {
+        heading: string;
+        body: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Immagini di mandala creati con l'AI. Se vuota, la pagina mostra mandala generati dal codice.
+   */
+  generativeGallery?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "about-page_select".
+ */
+export interface AboutPageSelect<T extends boolean = true> {
+  title?: T;
+  subtitle?: T;
+  sections?:
+    | T
+    | {
+        heading?: T;
+        body?: T;
+        id?: T;
+      };
+  generativeGallery?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

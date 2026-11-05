@@ -5,19 +5,14 @@
     "description": "Mandala incisi e dipinti a mano su legno. Ogni quadro è un pezzo unico."
   },
   "nav": {
-    "works": "Opere",
     "language": "Lingua",
-    "switchTo": "English"
-  },
-  "home": {
-    "title": "Ogni mandala esiste una volta sola",
-    "intro": "Inciso nel legno, dipinto a mano, firmato. Quando un quadro trova casa, non viene rifatto.",
-    "cta": "Guarda le opere",
-    "latest": "Ultimi arrivi"
+    "switchTo": "English",
+    "shop": "Negozio",
+    "about": "Un Mandala per sempre"
   },
   "catalog": {
-    "title": "Opere",
-    "intro": "In sanscrito mandala significa cerchio. Da secoli è una forma usata per meditare: un centro e, intorno, simmetrie che si ripetono fino a riempire lo spazio. I nostri sono incisi e dipinti a mano su legno, e ognuno esiste una volta sola. Quelli venduti restano qui come archivio.",
+    "title": "Le opere",
+    "intro": "Mandala incisi e dipinti a mano su legno. Ogni quadro esiste una volta sola: quelli venduti restano qui come archivio.",
     "empty": "Nessun quadro pubblicato al momento. Torna a trovarci presto.",
     "count": "{count, plural, =1 {# opera} other {# opere}}",
     "noMatch": "Nessun quadro corrisponde a questi filtri.",
@@ -71,9 +66,9 @@
       "natural": "Legno naturale"
     },
     "prices": {
-      "under-150": "Fino a 150 €",
-      "150-300": "Da 150 a 300 €",
-      "over-300": "Oltre 300 €"
+      "under-250": "Fino a 250 €",
+      "250-400": "Da 250 a 400 €",
+      "over-400": "Oltre 400 €"
     },
     "sort": "Ordina per",
     "sorts": {
@@ -82,5 +77,22 @@
       "price-desc": "Prezzo decrescente",
       "title": "Nome A-Z"
     }
+  },
+  "about": {
+    "title": "Un Mandala per sempre",
+    "subtitle": "Mandala incisi e dipinti a mano su tavola di legno. Pezzi unici, pensati per restare.",
+    "sections": [
+      {
+        "heading": "Le opere",
+        "body": "Ogni quadro nasce da una tavola di legno. Il disegno viene inciso a mano, linea dopo linea, poi dipinto con colori, ori e argenti che riempiono i solchi e danno rilievo alla trama.\n\nTondi, quadrati, rettangolari, a volte composti su più pannelli. Nessun quadro viene rifatto: quando trova casa, resta unico."
+      },
+      {
+        "heading": "La mia visione",
+        "body": "In sanscrito mandala significa cerchio. Per me è un modo di fermare il tempo: si parte da un punto e si cresce verso l'esterno, ripetendo un gesto finché il disordine diventa forma.\n\nOgni quadro è il diario di quelle ore. Chi lo guarda può fare lo stesso percorso al contrario, dal bordo fino al centro."
+      }
+    ],
+    "galleryTitle": "Mandala generativi",
+    "galleryIntro": "Accanto alle opere su legno esploro i mandala generativi: forme create da regole di simmetria, che diventano studi di colore e ritmo. Non sono in vendita.",
+    "cta": "Guarda le opere"
   }
 }

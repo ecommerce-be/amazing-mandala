@@ -25,7 +25,6 @@ export const Media: CollectionConfig = {
       label: { it: 'Testo alternativo', en: 'Alt text' },
       type: 'text',
       required: true,
-      localized: true,
       admin: { description: 'Descrive la foto per chi usa uno screen reader e per Google.' },
     },
   ],

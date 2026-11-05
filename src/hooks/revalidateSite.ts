@@ -1,5 +1,9 @@
 import { revalidatePath } from 'next/cache'
-import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
+import type {
+  CollectionAfterChangeHook,
+  CollectionAfterDeleteHook,
+  GlobalAfterChangeHook,
+} from 'payload'
 
 // Rigenera le pagine del sito quando un quadro cambia (anche dal checkout).
 // Fuori da Next.js (script, test) revalidatePath non è disponibile: lo ignoriamo.
@@ -17,6 +21,11 @@ export const revalidateAfterChange: CollectionAfterChangeHook = ({ doc }) => {
 }
 
 export const revalidateAfterDelete: CollectionAfterDeleteHook = ({ doc }) => {
+  revalidate()
+  return doc
+}
+
+export const revalidateGlobal: GlobalAfterChangeHook = ({ doc }) => {
   revalidate()
   return doc
 }

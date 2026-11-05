@@ -5,19 +5,14 @@
     "description": "Mandalas engraved and hand-painted on wood. Every piece is one of a kind."
   },
   "nav": {
-    "works": "Works",
     "language": "Language",
-    "switchTo": "Italiano"
-  },
-  "home": {
-    "title": "Every mandala exists only once",
-    "intro": "Engraved in wood, painted by hand, signed. Once a piece finds a home, it is never made again.",
-    "cta": "See the works",
-    "latest": "New arrivals"
+    "switchTo": "Italiano",
+    "shop": "Shop",
+    "about": "A mandala forever"
   },
   "catalog": {
-    "title": "Works",
-    "intro": "In Sanskrit, mandala means circle. For centuries it has been a form for meditation: a centre, surrounded by symmetries that repeat until they fill the space. Ours are engraved and hand-painted on wood, and each one exists only once. Sold pieces stay here as an archive.",
+    "title": "The works",
+    "intro": "Mandalas engraved and hand-painted on wood. Each piece exists only once: sold works stay here as an archive.",
     "empty": "No works are published right now. Check back soon.",
     "count": "{count, plural, =1 {# work} other {# works}}",
     "noMatch": "No works match these filters.",
@@ -71,9 +66,9 @@
       "natural": "Natural wood"
     },
     "prices": {
-      "under-150": "Up to €150",
-      "150-300": "€150 to €300",
-      "over-300": "Over €300"
+      "under-250": "Up to €250",
+      "250-400": "€250 to €400",
+      "over-400": "Over €400"
     },
     "sort": "Sort by",
     "sorts": {
@@ -82,5 +77,22 @@
       "price-desc": "Price, high to low",
       "title": "Name A-Z"
     }
+  },
+  "about": {
+    "title": "A mandala forever",
+    "subtitle": "Mandalas engraved and hand-painted on wooden panels. One-of-a-kind pieces, made to last.",
+    "sections": [
+      {
+        "heading": "The works",
+        "body": "Every piece starts from a wooden panel. The design is engraved by hand, line by line, then painted with colours, gold and silver that fill the grooves and bring the pattern into relief.\n\nRound, square, rectangular, sometimes spread across several panels. No piece is ever made twice: once it finds a home, it stays unique."
+      },
+      {
+        "heading": "My vision",
+        "body": "In Sanskrit, mandala means circle. To me it is a way of stopping time: you start from a point and grow outwards, repeating a gesture until disorder becomes form.\n\nEach piece is a diary of those hours. Whoever looks at it can take the same path in reverse, from the edge to the centre."
+      }
+    ],
+    "galleryTitle": "Generative mandalas",
+    "galleryIntro": "Alongside the wooden works I explore generative mandalas: shapes built from rules of symmetry, which become studies in colour and rhythm. They are not for sale.",
+    "cta": "See the works"
   }
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { Figtree, Marcellus } from 'next/font/google'
+import { Figtree, Great_Vibes, Marcellus } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
@@ -14,6 +14,8 @@ import '../globals.css'
 
 const marcellus = Marcellus({ weight: '400', subsets: ['latin'], variable: '--font-marcellus' })
 const figtree = Figtree({ subsets: ['latin'], variable: '--font-figtree' })
+// Corsivo usato solo nel logo
+const greatVibes = Great_Vibes({ weight: '400', subsets: ['latin'], variable: '--font-script' })
 
 type Props = { children: React.ReactNode; params: Promise<{ locale: string }> }
 
@@ -36,7 +38,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   setRequestLocale(locale)
 
   return (
-    <html lang={locale} data-palette={ACTIVE_PALETTE} className={`${marcellus.variable} ${figtree.variable}`}>
+    <html lang={locale} data-palette={ACTIVE_PALETTE} className={`${marcellus.variable} ${figtree.variable} ${greatVibes.variable}`}>
       <body className="flex min-h-dvh flex-col">
         <NextIntlClientProvider>
           <SiteHeader />

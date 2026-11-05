@@ -9,9 +9,9 @@ export const COLORS = [
 ] as const
 // Fasce di prezzo in euro: [min, max) — max null = senza limite
 export const PRICE_RANGES = {
-  'under-150': [0, 150],
-  '150-300': [150, 300],
-  'over-300': [300, null],
+  'under-250': [0, 250],
+  '250-400': [250, 400],
+  'over-400': [400, null],
 } as const
 
 // Ordinamenti: chiave URL -> campo Payload

@@ -37,7 +37,7 @@ export default async function ArtworkPage({ params }: Props) {
 
   return (
     <div className="mx-auto max-w-6xl px-4 pt-10 sm:px-8">
-      <Link href="/opere" className="text-sm text-ink-soft underline-offset-4 hover:text-ink hover:underline">
+      <Link href="/" className="text-sm text-ink-soft underline-offset-4 hover:text-ink hover:underline">
         {t('back')}
       </Link>
 
