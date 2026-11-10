@@ -262,8 +262,8 @@ export function Logo({ className, title = 'Amazing Mandala' }: { className?: str
       viewBox="0 0 240 240"
       role="img"
       aria-label={title}
-      translate="no"
-      className={className}
+      // classe riconosciuta dai traduttori dei browser: il nome del brand non va tradotto
+      className={`notranslate ${className ?? ''}`}
       dangerouslySetInnerHTML={{ __html: FULL }}
     />
   )
