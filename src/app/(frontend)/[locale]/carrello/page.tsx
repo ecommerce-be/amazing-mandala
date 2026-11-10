@@ -3,12 +3,16 @@ import Image from 'next/image'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { CountrySelect } from '@/components/CountrySelect'
+import { CouponForm } from '@/components/CouponForm'
 import { Link } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { coverOf, formatPrice, getArtworksByIds } from '@/lib/artworks'
 import { getCartIds } from '@/lib/cart'
 import { removeFromCart } from '@/lib/cartActions'
 import { startCheckout } from '@/lib/checkout'
+import { applyCouponCode, removeCouponCode } from '@/lib/couponActions'
+import { applyCoupon, checkCoupon, getCouponCode } from '@/lib/coupons'
+import { getCurrentCustomer } from '@/lib/customerAuth'
 import { DEFAULT_COUNTRY, EU_COUNTRIES, isCountry, shippingCost } from '@/lib/shipping'
 
 type Props = {
@@ -33,7 +37,12 @@ export default async function CartPage({ params, searchParams }: Props) {
   const unavailable = artworks.filter((a) => a.status !== 'published')
   const subtotal = available.reduce((sum, a) => sum + a.price, 0)
   const country = isCountry(query.country) ? query.country : DEFAULT_COUNTRY
-  const shipping = shippingCost(country, available)
+  const code = await getCouponCode()
+  const check = code && available.length > 0 ? await checkCoupon(code, subtotal, await getCurrentCustomer()) : null
+  const coupon = check?.ok ? check.coupon : null
+  const applied = applyCoupon(coupon, subtotal * 100, shippingCost(country, available) * 100)
+  const discount = applied.discountCents / 100
+  const shipping = applied.shippingCents / 100
   const regionName = new Intl.DisplayNames([locale], { type: 'region' })
   const countryOptions = EU_COUNTRIES.map((code) => ({ code, label: regionName.of(code) ?? code })).sort((a, b) =>
     a.label.localeCompare(b.label, locale),
@@ -98,16 +107,33 @@ export default async function CartPage({ params, searchParams }: Props) {
                   <dt className="text-ink-soft">{t('subtotal')}</dt>
                   <dd className="tabular-nums">{formatPrice(subtotal, locale)}</dd>
                 </div>
+                {coupon && (
+                  <div className="flex items-baseline justify-between gap-3">
+                    <dt className="text-ink-soft">
+                      {t('discount', { code: coupon.code })}{' '}
+                      <form action={removeCouponCode} className="inline">
+                        <button type="submit" className="text-sm underline underline-offset-4 hover:text-ink">
+                          {t('removeCoupon')}
+                        </button>
+                      </form>
+                    </dt>
+                    <dd className="tabular-nums">
+                      {coupon.type === 'free_shipping' ? t('freeShippingCoupon') : `−${formatPrice(discount, locale)}`}
+                    </dd>
+                  </div>
+                )}
                 <div className="flex justify-between">
                   <dt className="text-ink-soft">{t('shipping')}</dt>
                   <dd className="tabular-nums">{shipping === 0 ? t('free') : formatPrice(shipping, locale)}</dd>
                 </div>
                 <div className="flex justify-between border-t border-ink/15 pt-3 text-lg">
                   <dt>{t('total')}</dt>
-                  <dd className="tabular-nums">{formatPrice(subtotal + shipping, locale)}</dd>
+                  <dd className="tabular-nums">{formatPrice(subtotal - discount + shipping, locale)}</dd>
                 </div>
               </dl>
               <p className="mt-2 text-sm text-ink-soft">{t('vatIncluded')}</p>
+              {!coupon && <CouponForm action={applyCouponCode.bind(null, locale)} />}
+              {code && check && !check.ok && <p className="mt-2 text-sm text-[#9b1c1c]">{t('couponNoLonger')}</p>}
               <form action={startCheckout.bind(null, locale)} className="mt-6">
                 <input type="hidden" name="country" value={country} />
                 <button type="submit" className="w-full rounded-md bg-ink px-6 py-3 text-on-ink hover:bg-ink/90">

@@ -145,12 +145,14 @@ export const Orders: CollectionConfig = {
     },
     // Importi salvati in centesimi (nascosti) e mostrati in euro
     { name: 'subtotal', type: 'number', admin: { hidden: true } },
+    { name: 'discount', type: 'number', defaultValue: 0, admin: { hidden: true } },
     { name: 'shipping', type: 'number', admin: { hidden: true } },
     { name: 'total', type: 'number', admin: { hidden: true } },
     {
       type: 'row',
       fields: [
         euroField('subtotalEur', 'subtotal', { it: 'Quadri', en: 'Artworks' }),
+        euroField('discountEur', 'discount', { it: 'Sconto', en: 'Discount' }),
         euroField('shippingEur', 'shipping', { it: 'Spedizione', en: 'Shipping' }),
         euroField('totalEur', 'total', { it: 'Totale', en: 'Total' }),
       ],
@@ -177,6 +179,7 @@ export const Orders: CollectionConfig = {
     { name: 'notes', label: { it: 'Note interne', en: 'Internal notes' }, type: 'textarea' },
     // Barra laterale
     { name: 'country', label: { it: 'Paese', en: 'Country' }, type: 'text', admin: { position: 'sidebar', readOnly: true } },
+    { name: 'couponCode', label: { it: 'Coupon usato', en: 'Coupon used' }, type: 'text', index: true, admin: { position: 'sidebar', readOnly: true } },
     { name: 'locale', label: { it: 'Lingua', en: 'Language' }, type: 'text', admin: { position: 'sidebar', readOnly: true } },
     { name: 'stripeSessionId', label: 'Stripe session', type: 'text', unique: true, index: true, admin: { position: 'sidebar', readOnly: true } },
     { name: 'stripePaymentIntentId', label: 'Stripe payment', type: 'text', admin: { position: 'sidebar', readOnly: true } },

@@ -5,6 +5,7 @@ import type Stripe from 'stripe'
 import { customerConfirmation, ownerNotification } from '@/emails/orderEmails'
 import { revalidateSite } from '@/hooks/revalidateSite'
 
+import { incrementCouponUse } from './coupons'
 import { markArtworksSold, releaseArtworks } from './reservations'
 import { SITE_URL } from './stripe'
 
@@ -64,6 +65,7 @@ export async function completeOrder(session: Stripe.Checkout.Session) {
     },
   })
   await markArtworksSold(artworkIdsFromSession(session))
+  if (paid.couponCode) await incrementCouponUse(paid.couponCode)
   revalidateSite()
 
   // Email: un errore di invio non deve far fallire il webhook (l'ordine è già pagato)

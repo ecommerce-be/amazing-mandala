@@ -34,6 +34,7 @@ function summary(order: Order, locale: string) {
     .join('<br>')
   return `<table width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #d8cbb3;border-bottom:1px solid #d8cbb3;margin:16px 0">
 ${rows}
+${order.discount ? `<tr><td style="padding:6px 0;color:${C.soft}">${it ? 'Sconto' : 'Discount'}${order.couponCode ? ` (${esc(order.couponCode)})` : ''}</td><td align="right">−${eur(order.discount, locale)}</td></tr>` : ''}
 <tr><td style="padding:6px 0;color:${C.soft}">${it ? 'Spedizione' : 'Shipping'}</td><td align="right">${shipping}</td></tr>
 <tr><td style="padding:8px 0;font-weight:bold">${it ? 'Totale' : 'Total'}</td><td align="right" style="font-weight:bold">${eur(order.total, locale)}</td></tr>
 </table>

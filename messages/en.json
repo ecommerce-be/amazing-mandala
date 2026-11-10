@@ -116,7 +116,11 @@
     "justSold": "One of the pieces was just taken by someone else. Check your cart and try again.",
     "country": "Ship to",
     "update": "Update",
-    "free": "Free"
+    "free": "Free",
+    "discount": "Discount {code}",
+    "removeCoupon": "remove",
+    "freeShippingCoupon": "Free shipping",
+    "couponNoLonger": "The discount code you entered is no longer valid for this cart."
   },
   "order": {
     "title": "Thank you!",
@@ -184,5 +188,18 @@
   "wishlist": {
     "add": "Add to wishlist",
     "remove": "Remove from wishlist"
+  },
+  "coupon": {
+    "label": "Have a discount code?",
+    "apply": "Apply",
+    "errors": {
+      "notFound": "Invalid code.",
+      "expired": "This code has expired.",
+      "notYet": "This code isn't active yet.",
+      "exhausted": "This code has been used up.",
+      "minSubtotal": "Valid for a spend of at least €{min} on artworks.",
+      "needsAccount": "Sign in to your account to use this code.",
+      "alreadyUsed": "You've already used this code."
+    }
   }
 }

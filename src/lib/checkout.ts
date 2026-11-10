@@ -1,6 +1,7 @@
 'use server'
 
 import config from '@payload-config'
+import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { getPayload } from 'payload'
 
@@ -10,6 +11,7 @@ import type { Locale } from '@/i18n/routing'
 
 import { coverOf, getArtworksByIds } from './artworks'
 import { getCartIds, setCartIds } from './cart'
+import { applyCoupon, checkCoupon, COUPON_COOKIE, getCouponCode } from './coupons'
 import { getCurrentCustomer } from './customerAuth'
 import { releaseArtworks, RESERVATION_MINUTES, reserveArtwork } from './reservations'
 import { DEFAULT_COUNTRY, isCountry, shippingCost } from './shipping'
@@ -38,14 +40,30 @@ export async function startCheckout(locale: Locale, formData: FormData) {
   // 2. Sessione Stripe Checkout
   const stripe = getStripe()
   const subtotal = artworks.reduce((sum, a) => sum + a.price * 100, 0)
-  const shippingCents = shippingCost(country, artworks) * 100
+  // coupon: ricontrollato qui, perché dal carrello potrebbe essere scaduto o esaurito
+  const code = await getCouponCode()
+  const check = code ? await checkCoupon(code, subtotal / 100, customer) : null
+  const coupon = check?.ok ? check.coupon : null
+  const { discountCents, shippingCents } = applyCoupon(coupon, subtotal, shippingCost(country, artworks) * 100)
   const shippingLabel =
     shippingCents === 0
       ? locale === 'it' ? 'Spedizione gratuita con BRT, assicurata e tracciata' : 'Free insured, tracked shipping with BRT'
       : locale === 'it' ? 'Spedizione BRT assicurata e tracciata' : 'Insured, tracked BRT shipping'
   let sessionUrl: string
   try {
+    // Lo sconto arriva a Stripe come coupon monouso dell'importo già calcolato
+    const stripeCoupon =
+      discountCents > 0
+        ? await stripe.coupons.create({
+            amount_off: discountCents,
+            currency: 'eur',
+            duration: 'once',
+            max_redemptions: 1,
+            name: coupon!.code,
+          })
+        : null
     const session = await stripe.checkout.sessions.create({
+      ...(stripeCoupon ? { discounts: [{ coupon: stripeCoupon.id }] } : {}),
       mode: 'payment',
       ...(customer ? { customer_email: customer.email } : {}),
       locale,
@@ -78,7 +96,7 @@ export async function startCheckout(locale: Locale, formData: FormData) {
         },
       ],
       phone_number_collection: { enabled: true },
-      metadata: { artworkIds: reserved.join(','), locale, country },
+      metadata: { artworkIds: reserved.join(','), locale, country, couponCode: coupon?.code ?? '' },
       success_url: `${SITE_URL}${getPathname({ locale, href: '/ordine/confermato' })}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${SITE_URL}/api/checkout/cancel?session_id={CHECKOUT_SESSION_ID}&locale=${locale}`,
     })
@@ -95,8 +113,10 @@ export async function startCheckout(locale: Locale, formData: FormData) {
         items: artworks.map((a) => ({ artwork: a.id, title: a.title, priceCents: a.price * 100 })),
         country,
         subtotal,
+        discount: discountCents,
+        couponCode: coupon?.code,
         shipping: shippingCents,
-        total: subtotal + shippingCents,
+        total: subtotal - discountCents + shippingCents,
       },
     })
     sessionUrl = session.url!
@@ -109,5 +129,6 @@ export async function startCheckout(locale: Locale, formData: FormData) {
   // Il carrello si svuota: i quadri ora sono riservati per questo pagamento.
   // Se il cliente annulla, /api/checkout/cancel li rimette nel carrello.
   await setCartIds([])
+  ;(await cookies()).delete(COUPON_COOKIE)
   redirect(sessionUrl)
 }

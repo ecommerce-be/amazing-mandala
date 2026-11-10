@@ -13,6 +13,7 @@ import { Media } from './collections/Media'
 import { Artworks } from './collections/Artworks'
 import { Orders } from './collections/Orders'
 import { Customers } from './collections/Customers'
+import { Coupons } from './collections/Coupons'
 import { AboutPage } from './globals/AboutPage'
 
 const filename = fileURLToPath(import.meta.url)
@@ -25,7 +26,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Artworks, Orders, Customers, Media, Users],
+  collections: [Artworks, Orders, Customers, Coupons, Media, Users],
   globals: [AboutPage],
   localization: {
     locales: [

@@ -71,6 +71,7 @@ export interface Config {
     artworks: Artwork;
     orders: Order;
     customers: Customer;
+    coupons: Coupon;
     media: Media;
     users: User;
     'payload-kv': PayloadKv;
@@ -83,6 +84,7 @@ export interface Config {
     artworks: ArtworksSelect<false> | ArtworksSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
     customers: CustomersSelect<false> | CustomersSelect<true>;
+    coupons: CouponsSelect<false> | CouponsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -328,9 +330,11 @@ export interface Order {
       }[]
     | null;
   subtotal?: number | null;
+  discount?: number | null;
   shipping?: number | null;
   total?: number | null;
   subtotalEur?: string | null;
+  discountEur?: string | null;
   shippingEur?: string | null;
   totalEur?: string | null;
   trackingNumber?: string | null;
@@ -340,6 +344,7 @@ export interface Order {
   trackingUrl?: string | null;
   notes?: string | null;
   country?: string | null;
+  couponCode?: string | null;
   locale?: string | null;
   stripeSessionId?: string | null;
   stripePaymentIntentId?: string | null;
@@ -420,6 +425,35 @@ export interface Customer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "coupons".
+ */
+export interface Coupon {
+  id: number;
+  /**
+   * Es. BENVENUTO10. Viene salvato in maiuscolo e senza spazi.
+   */
+  code: string;
+  active?: boolean | null;
+  type: 'percent' | 'amount' | 'free_shipping';
+  value?: number | null;
+  /**
+   * Es. "Promo Natale 2026". Non la vede il cliente.
+   */
+  description?: string | null;
+  minSubtotal?: number | null;
+  validFrom?: string | null;
+  validUntil?: string | null;
+  /**
+   * Vuoto = senza limite.
+   */
+  maxUses?: number | null;
+  oncePerCustomer?: boolean | null;
+  usedCount?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
 export interface User {
@@ -479,6 +513,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'customers';
         value: number | Customer;
+      } | null)
+    | ({
+        relationTo: 'coupons';
+        value: number | Coupon;
       } | null)
     | ({
         relationTo: 'media';
@@ -606,15 +644,18 @@ export interface OrdersSelect<T extends boolean = true> {
         id?: T;
       };
   subtotal?: T;
+  discount?: T;
   shipping?: T;
   total?: T;
   subtotalEur?: T;
+  discountEur?: T;
   shippingEur?: T;
   totalEur?: T;
   trackingNumber?: T;
   trackingUrl?: T;
   notes?: T;
   country?: T;
+  couponCode?: T;
   locale?: T;
   stripeSessionId?: T;
   stripePaymentIntentId?: T;
@@ -662,6 +703,25 @@ export interface CustomersSelect<T extends boolean = true> {
         createdAt?: T;
         expiresAt?: T;
       };
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "coupons_select".
+ */
+export interface CouponsSelect<T extends boolean = true> {
+  code?: T;
+  active?: T;
+  type?: T;
+  value?: T;
+  description?: T;
+  minSubtotal?: T;
+  validFrom?: T;
+  validUntil?: T;
+  maxUses?: T;
+  oncePerCustomer?: T;
+  usedCount?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

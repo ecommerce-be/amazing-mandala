@@ -116,7 +116,11 @@
     "justSold": "Uno dei quadri è appena stato preso da qualcun altro. Controlla il carrello e riprova.",
     "country": "Spedisci in",
     "update": "Aggiorna",
-    "free": "Gratuita"
+    "free": "Gratuita",
+    "discount": "Sconto {code}",
+    "removeCoupon": "rimuovi",
+    "freeShippingCoupon": "Spedizione gratuita",
+    "couponNoLonger": "Il codice sconto inserito non è più valido per questo carrello."
   },
   "order": {
     "title": "Grazie!",
@@ -184,5 +188,18 @@
   "wishlist": {
     "add": "Aggiungi ai preferiti",
     "remove": "Togli dai preferiti"
+  },
+  "coupon": {
+    "label": "Hai un codice sconto?",
+    "apply": "Applica",
+    "errors": {
+      "notFound": "Codice non valido.",
+      "expired": "Questo codice è scaduto.",
+      "notYet": "Questo codice non è ancora attivo.",
+      "exhausted": "Questo codice è esaurito.",
+      "minSubtotal": "Valido per una spesa di almeno {min} € sui quadri.",
+      "needsAccount": "Accedi al tuo account per usare questo codice.",
+      "alreadyUsed": "Hai già usato questo codice."
+    }
   }
 }
