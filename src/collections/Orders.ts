@@ -1,6 +1,23 @@
-import type { CollectionConfig } from 'payload'
+import type { CollectionConfig, Field } from 'payload'
 
 import { isAdmin } from '../access'
+
+const eur = (cents: unknown) =>
+  typeof cents === 'number'
+    ? new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(cents / 100)
+    : ''
+
+// Campo di sola lettura che mostra in euro un importo salvato in centesimi
+function euroField(name: string, from: string, label: { it: string; en: string }): Field {
+  return {
+    name,
+    label,
+    type: 'text',
+    virtual: true,
+    admin: { readOnly: true },
+    hooks: { afterRead: [({ siblingData }) => eur(siblingData?.[from])] },
+  }
+}
 
 export const ORDER_STATUSES = ['pending', 'paid', 'shipped', 'delivered', 'cancelled', 'refunded'] as const
 
@@ -13,7 +30,7 @@ export const Orders: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'orderNumber',
-    defaultColumns: ['orderNumber', 'status', 'email', 'total', 'createdAt'],
+    defaultColumns: ['orderNumber', 'status', 'customerName', 'country', 'totalEur', 'createdAt'],
     listSearchableFields: ['orderNumber', 'email', 'customerName'],
   },
   defaultSort: '-createdAt',
@@ -93,15 +110,20 @@ export const Orders: CollectionConfig = {
       fields: [
         { name: 'artwork', label: { it: 'Quadro', en: 'Artwork' }, type: 'relationship', relationTo: 'artworks' },
         { name: 'title', label: { it: 'Titolo', en: 'Title' }, type: 'text', required: true },
-        { name: 'priceCents', label: { it: 'Prezzo (cent)', en: 'Price (cents)' }, type: 'number', required: true },
+        { name: 'priceCents', type: 'number', required: true, admin: { hidden: true } },
+        euroField('priceEur', 'priceCents', { it: 'Prezzo', en: 'Price' }),
       ],
     },
+    // Importi salvati in centesimi (nascosti) e mostrati in euro
+    { name: 'subtotal', type: 'number', admin: { hidden: true } },
+    { name: 'shipping', type: 'number', admin: { hidden: true } },
+    { name: 'total', type: 'number', admin: { hidden: true } },
     {
       type: 'row',
       fields: [
-        { name: 'subtotal', label: { it: 'Subtotale (cent)', en: 'Subtotal (cents)' }, type: 'number', admin: { readOnly: true } },
-        { name: 'shipping', label: { it: 'Spedizione (cent)', en: 'Shipping (cents)' }, type: 'number', admin: { readOnly: true } },
-        { name: 'total', label: { it: 'Totale (cent)', en: 'Total (cents)' }, type: 'number', admin: { readOnly: true } },
+        euroField('subtotalEur', 'subtotal', { it: 'Quadri', en: 'Artworks' }),
+        euroField('shippingEur', 'shipping', { it: 'Spedizione', en: 'Shipping' }),
+        euroField('totalEur', 'total', { it: 'Totale', en: 'Total' }),
       ],
     },
     {
@@ -113,6 +135,7 @@ export const Orders: CollectionConfig = {
     },
     { name: 'notes', label: { it: 'Note interne', en: 'Internal notes' }, type: 'textarea' },
     // Barra laterale
+    { name: 'country', label: { it: 'Paese', en: 'Country' }, type: 'text', admin: { position: 'sidebar', readOnly: true } },
     { name: 'locale', label: { it: 'Lingua', en: 'Language' }, type: 'text', admin: { position: 'sidebar', readOnly: true } },
     { name: 'stripeSessionId', label: 'Stripe session', type: 'text', unique: true, index: true, admin: { position: 'sidebar', readOnly: true } },
     { name: 'stripePaymentIntentId', label: 'Stripe payment', type: 'text', admin: { position: 'sidebar', readOnly: true } },

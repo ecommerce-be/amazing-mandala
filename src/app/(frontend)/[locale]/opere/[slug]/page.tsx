@@ -78,6 +78,7 @@ export default async function ArtworkPage({ params }: Props) {
               <>
                 <p className="text-3xl tabular-nums">{formatPrice(artwork.price, locale)}</p>
                 <p className="mt-1 text-sm text-ink-soft">{t('vatIncluded')}</p>
+                <p className="mt-1 text-sm text-ink-soft">{t('freeShippingItaly')}</p>
                 <div className="mt-6">
                   {artwork.status === 'reserved' ? (
                     <p className="text-sm text-ink-soft">{t('reservedNote')}</p>

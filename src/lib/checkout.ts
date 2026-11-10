@@ -11,9 +11,12 @@ import type { Locale } from '@/i18n/routing'
 import { coverOf, getArtworksByIds } from './artworks'
 import { getCartIds, setCartIds } from './cart'
 import { releaseArtworks, RESERVATION_MINUTES, reserveArtwork } from './reservations'
-import { EU_COUNTRIES, getStripe, SHIPPING_CENTS, SITE_URL } from './stripe'
+import { DEFAULT_COUNTRY, isCountry, shippingCost } from './shipping'
+import { getStripe, SITE_URL } from './stripe'
 
-export async function startCheckout(locale: Locale) {
+export async function startCheckout(locale: Locale, formData: FormData) {
+  const countryRaw = formData.get('country')
+  const country = isCountry(countryRaw) ? countryRaw : DEFAULT_COUNTRY
   const cartPath = getPathname({ locale, href: '/carrello' })
   const artworks = (await getArtworksByIds(locale, await getCartIds())).filter((a) => a.status === 'published')
   if (artworks.length === 0) redirect(cartPath)
@@ -33,6 +36,11 @@ export async function startCheckout(locale: Locale) {
   // 2. Sessione Stripe Checkout
   const stripe = getStripe()
   const subtotal = artworks.reduce((sum, a) => sum + a.price * 100, 0)
+  const shippingCents = shippingCost(country, artworks) * 100
+  const shippingLabel =
+    shippingCents === 0
+      ? locale === 'it' ? 'Spedizione gratuita con BRT, assicurata e tracciata' : 'Free insured, tracked shipping with BRT'
+      : locale === 'it' ? 'Spedizione BRT assicurata e tracciata' : 'Insured, tracked BRT shipping'
   let sessionUrl: string
   try {
     const session = await stripe.checkout.sessions.create({
@@ -55,18 +63,19 @@ export async function startCheckout(locale: Locale) {
           },
         }
       }),
-      shipping_address_collection: { allowed_countries: [...EU_COUNTRIES] },
+      // il paese è quello scelto nel carrello: la tariffa dipende da lì
+      shipping_address_collection: { allowed_countries: [country] },
       shipping_options: [
         {
           shipping_rate_data: {
             type: 'fixed_amount',
-            fixed_amount: { amount: SHIPPING_CENTS, currency: 'eur' },
-            display_name: locale === 'it' ? 'Spedizione assicurata con tracking' : 'Insured tracked shipping',
+            fixed_amount: { amount: shippingCents, currency: 'eur' },
+            display_name: shippingLabel,
           },
         },
       ],
       phone_number_collection: { enabled: true },
-      metadata: { artworkIds: reserved.join(','), locale },
+      metadata: { artworkIds: reserved.join(','), locale, country },
       success_url: `${SITE_URL}${getPathname({ locale, href: '/ordine/confermato' })}?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${SITE_URL}/api/checkout/cancel?session_id={CHECKOUT_SESSION_ID}&locale=${locale}`,
     })
@@ -80,9 +89,10 @@ export async function startCheckout(locale: Locale) {
         locale,
         stripeSessionId: session.id,
         items: artworks.map((a) => ({ artwork: a.id, title: a.title, priceCents: a.price * 100 })),
+        country,
         subtotal,
-        shipping: SHIPPING_CENTS,
-        total: subtotal + SHIPPING_CENTS,
+        shipping: shippingCents,
+        total: subtotal + shippingCents,
       },
     })
     sessionUrl = session.url!

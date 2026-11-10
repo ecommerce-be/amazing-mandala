@@ -31,7 +31,8 @@
     "back": "All works",
     "soldNote": "This piece has already found a home.",
     "reservedNote": "Someone is buying it right now.",
-    "meaning": "Meaning"
+    "meaning": "Meaning",
+    "freeShippingItaly": "Free insured, tracked shipping within Italy."
   },
   "footer": {
     "rights": "© {year} Amazing Mandala"
@@ -104,7 +105,7 @@
     "browse": "See the works",
     "remove": "Remove",
     "subtotal": "Artworks",
-    "shipping": "Insured shipping",
+    "shipping": "Insured BRT shipping",
     "total": "Total",
     "vatIncluded": "VAT included.",
     "checkout": "Go to payment",
@@ -112,7 +113,10 @@
     "soldMeanwhile": "It has been sold in the meantime.",
     "reservedMeanwhile": "Someone is buying it right now.",
     "cancelled": "Payment cancelled. The pieces are back in your cart.",
-    "justSold": "One of the pieces was just taken by someone else. Check your cart and try again."
+    "justSold": "One of the pieces was just taken by someone else. Check your cart and try again.",
+    "country": "Ship to",
+    "update": "Update",
+    "free": "Free"
   },
   "order": {
     "title": "Thank you!",

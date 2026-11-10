@@ -2,9 +2,11 @@ import config from '@payload-config'
 import { getPayload } from 'payload'
 import type Stripe from 'stripe'
 
+import { customerConfirmation, ownerNotification } from '@/emails/orderEmails'
 import { revalidateSite } from '@/hooks/revalidateSite'
 
 import { markArtworksSold, releaseArtworks } from './reservations'
+import { SITE_URL } from './stripe'
 
 export function artworkIdsFromSession(session: Stripe.Checkout.Session): number[] {
   return (session.metadata?.artworkIds ?? '')
@@ -38,7 +40,7 @@ export async function completeOrder(session: Stripe.Checkout.Session) {
   const shipping = s.collected_information?.shipping_details ?? s.shipping_details
   const addr = shipping?.address
 
-  await payload.update({
+  const paid = await payload.update({
     collection: 'orders',
     id: order.id,
     data: {
@@ -63,6 +65,21 @@ export async function completeOrder(session: Stripe.Checkout.Session) {
   })
   await markArtworksSold(artworkIdsFromSession(session))
   revalidateSite()
+
+  // Email: un errore di invio non deve far fallire il webhook (l'ordine è già pagato)
+  try {
+    if (paid.email) {
+      const mail = customerConfirmation(paid)
+      await payload.sendEmail({ to: paid.email, subject: mail.subject, html: mail.html })
+    }
+    const notify = process.env.ORDER_NOTIFY_EMAIL
+    if (notify) {
+      const mail = ownerNotification(paid, `${SITE_URL}/admin/collections/orders/${paid.id}`)
+      await payload.sendEmail({ to: notify, subject: mail.subject, html: mail.html })
+    }
+  } catch (err) {
+    payload.logger.error({ err }, `Invio email non riuscito per l'ordine ${paid.orderNumber}`)
+  }
 }
 
 /** Pagamento annullato o scaduto: ordine annullato, quadri di nuovo in vendita. */

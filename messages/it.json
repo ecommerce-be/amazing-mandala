@@ -31,7 +31,8 @@
     "back": "Tutte le opere",
     "soldNote": "Questo quadro ha già trovato casa.",
     "reservedNote": "Qualcuno lo sta acquistando in questo momento.",
-    "meaning": "Significato"
+    "meaning": "Significato",
+    "freeShippingItaly": "Spedizione gratuita in Italia, assicurata e tracciata."
   },
   "footer": {
     "rights": "© {year} Amazing Mandala"
@@ -104,7 +105,7 @@
     "browse": "Guarda le opere",
     "remove": "Rimuovi",
     "subtotal": "Quadri",
-    "shipping": "Spedizione assicurata",
+    "shipping": "Spedizione BRT assicurata",
     "total": "Totale",
     "vatIncluded": "IVA inclusa.",
     "checkout": "Procedi al pagamento",
@@ -112,7 +113,10 @@
     "soldMeanwhile": "Nel frattempo è stato venduto.",
     "reservedMeanwhile": "Qualcuno lo sta acquistando in questo momento.",
     "cancelled": "Pagamento annullato. I quadri sono di nuovo nel carrello.",
-    "justSold": "Uno dei quadri è appena stato preso da qualcun altro. Controlla il carrello e riprova."
+    "justSold": "Uno dei quadri è appena stato preso da qualcun altro. Controlla il carrello e riprova.",
+    "country": "Spedisci in",
+    "update": "Aggiorna",
+    "free": "Gratuita"
   },
   "order": {
     "title": "Grazie!",

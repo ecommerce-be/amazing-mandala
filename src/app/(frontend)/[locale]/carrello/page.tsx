@@ -2,13 +2,14 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
+import { CountrySelect } from '@/components/CountrySelect'
 import { Link } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { coverOf, formatPrice, getArtworksByIds } from '@/lib/artworks'
 import { getCartIds } from '@/lib/cart'
 import { removeFromCart } from '@/lib/cartActions'
 import { startCheckout } from '@/lib/checkout'
-import { SHIPPING_CENTS } from '@/lib/stripe'
+import { DEFAULT_COUNTRY, EU_COUNTRIES, isCountry, shippingCost } from '@/lib/shipping'
 
 type Props = {
   params: Promise<{ locale: Locale }>
@@ -31,7 +32,12 @@ export default async function CartPage({ params, searchParams }: Props) {
   const available = artworks.filter((a) => a.status === 'published')
   const unavailable = artworks.filter((a) => a.status !== 'published')
   const subtotal = available.reduce((sum, a) => sum + a.price, 0)
-  const shipping = SHIPPING_CENTS / 100
+  const country = isCountry(query.country) ? query.country : DEFAULT_COUNTRY
+  const shipping = shippingCost(country, available)
+  const regionName = new Intl.DisplayNames([locale], { type: 'region' })
+  const countryOptions = EU_COUNTRIES.map((code) => ({ code, label: regionName.of(code) ?? code })).sort((a, b) =>
+    a.label.localeCompare(b.label, locale),
+  )
 
   return (
     <div className="mx-auto max-w-4xl px-4 pt-14 sm:px-8">
@@ -80,14 +86,21 @@ export default async function CartPage({ params, searchParams }: Props) {
 
           {available.length > 0 && (
             <div className="mt-8 ml-auto max-w-sm">
-              <dl className="space-y-2 text-[15px]">
+              <CountrySelect
+                name="country"
+                value={country}
+                options={countryOptions}
+                label={t('country')}
+                updateLabel={t('update')}
+              />
+              <dl className="mt-6 space-y-2 text-[15px]">
                 <div className="flex justify-between">
                   <dt className="text-ink-soft">{t('subtotal')}</dt>
                   <dd className="tabular-nums">{formatPrice(subtotal, locale)}</dd>
                 </div>
                 <div className="flex justify-between">
                   <dt className="text-ink-soft">{t('shipping')}</dt>
-                  <dd className="tabular-nums">{formatPrice(shipping, locale)}</dd>
+                  <dd className="tabular-nums">{shipping === 0 ? t('free') : formatPrice(shipping, locale)}</dd>
                 </div>
                 <div className="flex justify-between border-t border-ink/15 pt-3 text-lg">
                   <dt>{t('total')}</dt>
@@ -96,6 +109,7 @@ export default async function CartPage({ params, searchParams }: Props) {
               </dl>
               <p className="mt-2 text-sm text-ink-soft">{t('vatIncluded')}</p>
               <form action={startCheckout.bind(null, locale)} className="mt-6">
+                <input type="hidden" name="country" value={country} />
                 <button type="submit" className="w-full rounded-md bg-ink px-6 py-3 text-on-ink hover:bg-ink/90">
                   {t('checkout')}
                 </button>
