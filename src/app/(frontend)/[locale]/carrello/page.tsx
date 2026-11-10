@@ -43,8 +43,8 @@ export default async function CartPage({ params, searchParams }: Props) {
     <div className="mx-auto max-w-4xl px-4 pt-14 sm:px-8">
       <h1 className="font-display text-5xl">{t('title')}</h1>
 
-      {query.cancelled && <p className="mt-6 rounded-md bg-paper-deep px-4 py-3">{t('cancelled')}</p>}
-      {query.unavailable && <p className="mt-6 rounded-md bg-paper-deep px-4 py-3">{t('justSold')}</p>}
+      {query.cancelled && <p className="mt-6 rounded-md bg-paper/70 px-4 py-3">{t('cancelled')}</p>}
+      {query.unavailable && <p className="mt-6 rounded-md bg-paper/70 px-4 py-3">{t('justSold')}</p>}
 
       {artworks.length === 0 ? (
         <div className="mt-10">
@@ -63,7 +63,7 @@ export default async function CartPage({ params, searchParams }: Props) {
                 <li key={a.id} className="flex items-center gap-5 py-5">
                   <Link
                     href={{ pathname: '/opere/[slug]', params: { slug: a.slug } }}
-                    className="relative size-24 shrink-0 bg-paper-deep"
+                    className="relative size-24 shrink-0"
                   >
                     {img && <Image src={img.url} alt={img.alt} fill sizes="96px" className="object-contain p-2" />}
                   </Link>

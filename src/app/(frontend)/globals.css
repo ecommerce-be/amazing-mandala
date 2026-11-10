@@ -50,14 +50,34 @@
   --font-sans: var(--font-figtree), system-ui, sans-serif;
 }
 
+/*
+ * Sfondo: uno dei quadri disponibili più recenti, molto sfocato, fisso dietro la pagina
+ * (componente PageBackdrop). --bg-veil è quanto il colore carta lo copre:
+ * 70% = più tenue, 50% = più colorato.
+ */
+:root {
+  --bg-veil: 72%;
+}
+
 html {
   background: var(--paper);
   color: var(--ink);
 }
 
 body {
+  position: relative;
+  isolation: isolate;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: color-mix(in srgb, var(--paper) var(--bg-veil), transparent);
 }
 
 :focus-visible {

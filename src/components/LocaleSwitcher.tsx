@@ -18,6 +18,7 @@ export function LocaleSwitcher() {
       href={{ pathname, params } as any}
       locale={other}
       hrefLang={other}
+      translate="no"
       className="text-sm text-ink-soft underline-offset-4 hover:text-ink hover:underline"
     >
       {t('switchTo')}

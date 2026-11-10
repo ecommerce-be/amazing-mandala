@@ -262,6 +262,7 @@ export function Logo({ className, title = 'Amazing Mandala' }: { className?: str
       viewBox="0 0 240 240"
       role="img"
       aria-label={title}
+      translate="no"
       className={className}
       dangerouslySetInnerHTML={{ __html: FULL }}
     />

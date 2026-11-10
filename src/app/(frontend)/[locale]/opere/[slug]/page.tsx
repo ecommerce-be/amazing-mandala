@@ -45,7 +45,7 @@ export default async function ArtworkPage({ params }: Props) {
       <div className="mt-8 grid gap-12 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
         <div className="flex flex-col gap-4">
           {main && (
-            <div className="relative aspect-square bg-paper-deep">
+            <div className="relative aspect-square">
               <Image
                 src={main.url}
                 alt={main.alt}
@@ -59,7 +59,7 @@ export default async function ArtworkPage({ params }: Props) {
           {rest.length > 0 && (
             <div className="grid grid-cols-3 gap-4">
               {rest.map((img) => (
-                <div key={img.url} className="relative aspect-square bg-paper-deep">
+                <div key={img.url} className="relative aspect-square">
                   <Image src={img.url} alt={img.alt} fill sizes="20vw" className="object-contain p-3" />
                 </div>
               ))}

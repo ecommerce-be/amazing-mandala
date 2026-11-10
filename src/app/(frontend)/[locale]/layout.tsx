@@ -5,6 +5,7 @@ import { Figtree, Great_Vibes, Marcellus } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import React from 'react'
 
+import { PageBackdrop } from '@/components/PageBackdrop'
 import { SiteFooter } from '@/components/SiteFooter'
 import { SiteHeader } from '@/components/SiteHeader'
 import { routing } from '@/i18n/routing'
@@ -40,6 +41,7 @@ export default async function LocaleLayout({ children, params }: Props) {
   return (
     <html lang={locale} data-palette={ACTIVE_PALETTE} className={`${marcellus.variable} ${figtree.variable} ${greatVibes.variable}`}>
       <body className="flex min-h-dvh flex-col">
+        <PageBackdrop />
         <NextIntlClientProvider>
           <SiteHeader />
           <main className="flex-1">{children}</main>

@@ -12,7 +12,7 @@ export function SiteHeader() {
   return (
     <header className="border-b border-ink/15">
       <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-4 py-4 sm:px-8">
-        <Link href="/" className="flex items-center gap-3 font-display text-2xl tracking-wide">
+        <Link href="/" translate="no" className="flex items-center gap-3 font-display text-2xl tracking-wide">
           <LogoMark className="size-10" />
           {t('site.name')}
         </Link>

@@ -14,7 +14,7 @@ export async function ArtworkCard({ artwork, locale }: { artwork: Artwork; local
   return (
     <article>
       <Link href={{ pathname: '/opere/[slug]', params: { slug: artwork.slug } }} className="group block">
-        <div className="relative aspect-square overflow-hidden bg-paper-deep">
+        <div className="relative aspect-square overflow-hidden">
           {cover && (
             <Image
               src={cover.url}
