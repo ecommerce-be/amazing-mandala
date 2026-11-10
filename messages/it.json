@@ -177,6 +177,12 @@
     "messages": {
       "resetSent": "Se l'email corrisponde a un account, riceverai a breve il link per reimpostare la password.",
       "profileSaved": "Dati salvati."
-    }
+    },
+    "wishlistTitle": "I miei preferiti",
+    "wishlistEmpty": "Tocca il cuore su un quadro per salvarlo qui."
+  },
+  "wishlist": {
+    "add": "Aggiungi ai preferiti",
+    "remove": "Togli dai preferiti"
   }
 }

@@ -60,6 +60,13 @@ export const Customers: CollectionConfig = {
       ],
     },
     {
+      name: 'wishlist',
+      label: { it: 'Preferiti', en: 'Wishlist' },
+      type: 'relationship',
+      relationTo: 'artworks',
+      hasMany: true,
+    },
+    {
       name: 'addresses',
       label: { it: 'Indirizzi', en: 'Addresses' },
       type: 'array',

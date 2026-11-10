@@ -18,7 +18,9 @@
     "db:up": "docker compose up -d",
     "db:down": "docker compose down",
     "seed": "cross-env NODE_OPTIONS=--no-deprecation payload run scripts/seed-artworks.ts",
-    "seed:reset": "cross-env SEED_RESET_ONLY=1 NODE_OPTIONS=--no-deprecation payload run scripts/seed-artworks.ts"
+    "seed:reset": "cross-env SEED_RESET_ONLY=1 NODE_OPTIONS=--no-deprecation payload run scripts/seed-artworks.ts",
+    "stripe:listen": "stripe listen --events checkout.session.completed,checkout.session.expired,checkout.session.async_payment_succeeded,checkout.session.async_payment_failed --forward-to localhost:3000/api/webhooks/stripe",
+    "dev:all": "npm run db:up && concurrently -k -n sito,stripe -c blue,magenta \"npm run dev\" \"npm run stripe:listen\""
   },
   "dependencies": {
     "@payloadcms/db-postgres": "3.92.1",

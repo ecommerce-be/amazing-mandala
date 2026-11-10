@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 import { AddToCart } from '@/components/AddToCart'
+import { WishlistButton } from '@/components/WishlistButton'
 import { Link } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { formatPrice, getArtworkBySlug, imageOf } from '@/lib/artworks'
@@ -68,7 +69,10 @@ export default async function ArtworkPage({ params }: Props) {
         </div>
 
         <div>
-          <h1 className="font-display text-4xl leading-tight sm:text-5xl">{artwork.title}</h1>
+          <div className="flex items-start justify-between gap-4">
+            <h1 className="font-display text-4xl leading-tight sm:text-5xl">{artwork.title}</h1>
+            <WishlistButton artworkId={artwork.id} slug={artwork.slug} className="mt-2 shrink-0" />
+          </div>
           {artwork.excerpt && <p className="mt-5 text-lg leading-relaxed text-ink-soft">{artwork.excerpt}</p>}
 
           <div className="mt-8 border-t border-ink/15 pt-6">

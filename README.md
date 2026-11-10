@@ -20,6 +20,9 @@ Copy-Item .env.example .env   # poi imposta PAYLOAD_SECRET
 npm install
 npm run db:up                 # avvia Postgres in Docker
 npm run dev                   # http://localhost:3000 e http://localhost:3000/admin
+
+# oppure tutto insieme: database, sito e webhook Stripe
+npm run dev:all
 ```
 
 ### Dati di prova

@@ -358,6 +358,7 @@ export interface Customer {
   lastName?: string | null;
   phone?: string | null;
   locale?: ('it' | 'en') | null;
+  wishlist?: (number | Artwork)[] | null;
   addresses?:
     | {
         name: string;
@@ -631,6 +632,7 @@ export interface CustomersSelect<T extends boolean = true> {
   lastName?: T;
   phone?: T;
   locale?: T;
+  wishlist?: T;
   addresses?:
     | T
     | {

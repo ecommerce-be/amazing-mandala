@@ -32,7 +32,10 @@ async function pickBackdrop() {
       .slice(0, CANDIDATES)
       .map((x) => x.img!)
     if (withImage.length === 0) return null
-    return withImage[Math.floor(Math.random() * withImage.length)].url
+    // Rotazione giornaliera, non casuale: lo sfondo resta uguale durante la visita
+    // (anche quando la pagina si aggiorna dopo un'azione) e cambia il giorno dopo
+    const day = Math.floor(Date.now() / 86_400_000)
+    return withImage[day % withImage.length].url
   } catch {
     return null
   }

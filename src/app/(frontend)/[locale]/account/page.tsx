@@ -5,10 +5,12 @@ import { getFormatter, getTranslations, setRequestLocale } from 'next-intl/serve
 import { getPayload } from 'payload'
 
 import { AccountForm } from '@/components/AccountForm'
+import { ArtworkCard } from '@/components/ArtworkCard'
 import { getPathname } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { logout, updateProfile } from '@/lib/accountActions'
-import { getCurrentCustomer } from '@/lib/customerAuth'
+import { getArtworksByIds } from '@/lib/artworks'
+import { getCurrentCustomer, getWishlistIds } from '@/lib/customerAuth'
 
 type Props = { params: Promise<{ locale: Locale }> }
 
@@ -45,6 +47,7 @@ export default async function AccountPage({ params }: Props) {
     limit: 50,
     depth: 0,
   })
+  const wishlist = await getArtworksByIds(locale, await getWishlistIds())
   const eur = (cents?: number | null) => format.number((cents ?? 0) / 100, { style: 'currency', currency: 'EUR' })
 
   return (
@@ -95,6 +98,19 @@ export default async function AccountPage({ params }: Props) {
               </li>
             ))}
           </ul>
+        )}
+      </section>
+
+      <section className="mt-16">
+        <h2 className="font-display text-3xl">{t('wishlistTitle')}</h2>
+        {wishlist.length === 0 ? (
+          <p className="mt-4 text-ink-soft">{t('wishlistEmpty')}</p>
+        ) : (
+          <div className="mt-8 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+            {wishlist.map((a) => (
+              <ArtworkCard key={a.id} artwork={a} locale={locale} />
+            ))}
+          </div>
         )}
       </section>
 

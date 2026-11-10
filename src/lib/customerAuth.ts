@@ -1,6 +1,7 @@
 import config from '@payload-config'
 import { cookies } from 'next/headers'
 import { getPayload } from 'payload'
+import { cache } from 'react'
 
 import type { Customer } from '@/payload-types'
 
@@ -24,8 +25,8 @@ export async function clearCustomerSession() {
   ;(await cookies()).delete(CUSTOMER_COOKIE)
 }
 
-/** Il cliente connesso, oppure null. Il token viene verificato da Payload. */
-export async function getCurrentCustomer(): Promise<Customer | null> {
+/** Il cliente connesso, oppure null. Il token viene verificato da Payload (una volta per richiesta). */
+export const getCurrentCustomer = cache(async (): Promise<Customer | null> => {
   const token = (await cookies()).get(CUSTOMER_COOKIE)?.value
   if (!token) return null
   try {
@@ -35,4 +36,10 @@ export async function getCurrentCustomer(): Promise<Customer | null> {
   } catch {
     return null
   }
+})
+
+/** Id dei quadri nei preferiti del cliente connesso. */
+export async function getWishlistIds(): Promise<number[]> {
+  const customer = await getCurrentCustomer()
+  return (customer?.wishlist ?? []).map((w) => (typeof w === 'number' ? w : w.id))
 }

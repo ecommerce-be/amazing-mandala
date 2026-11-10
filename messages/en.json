@@ -177,6 +177,12 @@
     "messages": {
       "resetSent": "If the email matches an account, you'll shortly receive a link to reset your password.",
       "profileSaved": "Details saved."
-    }
+    },
+    "wishlistTitle": "My wishlist",
+    "wishlistEmpty": "Tap the heart on a piece to save it here."
+  },
+  "wishlist": {
+    "add": "Add to wishlist",
+    "remove": "Remove from wishlist"
   }
 }

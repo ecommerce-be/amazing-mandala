@@ -6,13 +6,16 @@ import type { Locale } from '@/i18n/routing'
 import { coverOf, formatPrice } from '@/lib/artworks'
 import type { Artwork } from '@/payload-types'
 
+import { WishlistButton } from './WishlistButton'
+
 export async function ArtworkCard({ artwork, locale }: { artwork: Artwork; locale: Locale }) {
   const t = await getTranslations({ locale, namespace: 'artwork' })
   const cover = coverOf(artwork, 'card')
   const unavailable = artwork.status === 'sold' || artwork.status === 'reserved'
 
   return (
-    <article>
+    <article className="relative">
+      <WishlistButton artworkId={artwork.id} slug={artwork.slug} className="absolute right-3 top-3 z-10" />
       <Link href={{ pathname: '/opere/[slug]', params: { slug: artwork.slug } }} className="group block">
         <div className="relative aspect-square overflow-hidden">
           {cover && (
