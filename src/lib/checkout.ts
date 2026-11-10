@@ -10,6 +10,7 @@ import type { Locale } from '@/i18n/routing'
 
 import { coverOf, getArtworksByIds } from './artworks'
 import { getCartIds, setCartIds } from './cart'
+import { getCurrentCustomer } from './customerAuth'
 import { releaseArtworks, RESERVATION_MINUTES, reserveArtwork } from './reservations'
 import { DEFAULT_COUNTRY, isCountry, shippingCost } from './shipping'
 import { getStripe, SITE_URL } from './stripe'
@@ -18,6 +19,7 @@ export async function startCheckout(locale: Locale, formData: FormData) {
   const countryRaw = formData.get('country')
   const country = isCountry(countryRaw) ? countryRaw : DEFAULT_COUNTRY
   const cartPath = getPathname({ locale, href: '/carrello' })
+  const customer = await getCurrentCustomer()
   const artworks = (await getArtworksByIds(locale, await getCartIds())).filter((a) => a.status === 'published')
   if (artworks.length === 0) redirect(cartPath)
 
@@ -45,6 +47,7 @@ export async function startCheckout(locale: Locale, formData: FormData) {
   try {
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
+      ...(customer ? { customer_email: customer.email } : {}),
       locale,
       expires_at: Math.floor(until.getTime() / 1000),
       line_items: artworks.map((a) => {
@@ -87,6 +90,7 @@ export async function startCheckout(locale: Locale, formData: FormData) {
       data: {
         status: 'pending',
         locale,
+        customer: customer?.id,
         stripeSessionId: session.id,
         items: artworks.map((a) => ({ artwork: a.id, title: a.title, priceCents: a.price * 100 })),
         country,

@@ -63,12 +63,14 @@ export type SupportedTimezones =
 
 export interface Config {
   auth: {
+    customers: CustomerAuthOperations;
     users: UserAuthOperations;
   };
   blocks: {};
   collections: {
     artworks: Artwork;
     orders: Order;
+    customers: Customer;
     media: Media;
     users: User;
     'payload-kv': PayloadKv;
@@ -80,6 +82,7 @@ export interface Config {
   collectionsSelect: {
     artworks: ArtworksSelect<false> | ArtworksSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
+    customers: CustomersSelect<false> | CustomersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -101,10 +104,28 @@ export interface Config {
   widgets: {
     collections: CollectionsWidget;
   };
-  user: User;
+  user: Customer | User;
   jobs: {
     tasks: unknown;
     workflows: unknown;
+  };
+}
+export interface CustomerAuthOperations {
+  forgotPassword: {
+    email: string;
+    password: string;
+  };
+  login: {
+    email: string;
+    password: string;
+  };
+  registerFirstUser: {
+    email: string;
+    password: string;
+  };
+  unlock: {
+    email: string;
+    password: string;
   };
 }
 export interface UserAuthOperations {
@@ -281,6 +302,10 @@ export interface Order {
   id: number;
   orderNumber?: string | null;
   status: 'pending' | 'paid' | 'shipped' | 'delivered' | 'cancelled' | 'refunded';
+  /**
+   * Vuoto se l'acquisto è stato fatto senza account.
+   */
+  customer?: (number | null) | Customer;
   customerName?: string | null;
   email?: string | null;
   phone?: string | null;
@@ -322,6 +347,75 @@ export interface Order {
   paidAt?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customers".
+ */
+export interface Customer {
+  id: number;
+  firstName?: string | null;
+  lastName?: string | null;
+  phone?: string | null;
+  locale?: ('it' | 'en') | null;
+  addresses?:
+    | {
+        name: string;
+        line1: string;
+        line2?: string | null;
+        postalCode: string;
+        city: string;
+        state?: string | null;
+        country:
+          | 'AT'
+          | 'BE'
+          | 'BG'
+          | 'CY'
+          | 'CZ'
+          | 'DE'
+          | 'DK'
+          | 'EE'
+          | 'ES'
+          | 'FI'
+          | 'FR'
+          | 'GR'
+          | 'HR'
+          | 'HU'
+          | 'IE'
+          | 'IT'
+          | 'LT'
+          | 'LU'
+          | 'LV'
+          | 'MT'
+          | 'NL'
+          | 'PL'
+          | 'PT'
+          | 'RO'
+          | 'SE'
+          | 'SI'
+          | 'SK';
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  resetPasswordRequestedAt?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+  collection: 'customers';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -382,6 +476,10 @@ export interface PayloadLockedDocument {
         value: number | Order;
       } | null)
     | ({
+        relationTo: 'customers';
+        value: number | Customer;
+      } | null)
+    | ({
         relationTo: 'media';
         value: number | Media;
       } | null)
@@ -390,10 +488,15 @@ export interface PayloadLockedDocument {
         value: number | User;
       } | null);
   globalSlug?: string | null;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
+  user:
+    | {
+        relationTo: 'customers';
+        value: number | Customer;
+      }
+    | {
+        relationTo: 'users';
+        value: number | User;
+      };
   updatedAt: string;
   createdAt: string;
 }
@@ -403,10 +506,15 @@ export interface PayloadLockedDocument {
  */
 export interface PayloadPreference {
   id: number;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
+  user:
+    | {
+        relationTo: 'customers';
+        value: number | Customer;
+      }
+    | {
+        relationTo: 'users';
+        value: number | User;
+      };
   key?: string | null;
   value?:
     | {
@@ -472,6 +580,7 @@ export interface ArtworksSelect<T extends boolean = true> {
 export interface OrdersSelect<T extends boolean = true> {
   orderNumber?: T;
   status?: T;
+  customer?: T;
   customerName?: T;
   email?: T;
   phone?: T;
@@ -512,6 +621,45 @@ export interface OrdersSelect<T extends boolean = true> {
   paidAt?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "customers_select".
+ */
+export interface CustomersSelect<T extends boolean = true> {
+  firstName?: T;
+  lastName?: T;
+  phone?: T;
+  locale?: T;
+  addresses?:
+    | T
+    | {
+        name?: T;
+        line1?: T;
+        line2?: T;
+        postalCode?: T;
+        city?: T;
+        state?: T;
+        country?: T;
+        id?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  resetPasswordRequestedAt?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

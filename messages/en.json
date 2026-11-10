@@ -123,5 +123,60 @@
     "body": "We've received your order. The piece will be carefully packed and shipped with tracking.",
     "bodyWithEmail": "We've received your order. The piece will be carefully packed and shipped with tracking: we'll write to {email}.",
     "backToShop": "Back to the shop"
+  },
+  "account": {
+    "navLogin": "Sign in",
+    "navAccount": "My account",
+    "title": "My account",
+    "hello": "Hi {name}.",
+    "logout": "Sign out",
+    "ordersTitle": "My orders",
+    "noOrders": "You haven't placed any orders yet.",
+    "tracking": "BRT tracking",
+    "trackParcel": "Track your parcel",
+    "profileTitle": "My details",
+    "save": "Save",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phone": "Phone",
+    "email": "Email",
+    "password": "Password",
+    "newPassword": "New password",
+    "passwordHint": "At least 8 characters.",
+    "loginTitle": "Sign in",
+    "loginSubmit": "Sign in",
+    "forgotLink": "Forgot your password?",
+    "noAccount": "No account yet?",
+    "registerLink": "Create one",
+    "registerTitle": "Create an account",
+    "registerIntro": "With an account you can see your orders and track shipments.",
+    "registerSubmit": "Create account",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Sign in",
+    "forgotTitle": "Forgot your password",
+    "forgotIntro": "Enter your account email and we'll send you a link to choose a new one.",
+    "forgotSubmit": "Send the link",
+    "backToLogin": "Back to sign in",
+    "resetTitle": "New password",
+    "resetSubmit": "Save password",
+    "status": {
+      "paid": "Paid, being prepared",
+      "shipped": "Shipped",
+      "delivered": "Delivered",
+      "refunded": "Refunded"
+    },
+    "errors": {
+      "invalidEmail": "Check the email address.",
+      "shortPassword": "The password must be at least 8 characters.",
+      "emailTaken": "An account with this email already exists. Sign in or reset your password.",
+      "wrongCredentials": "Wrong email or password.",
+      "locked": "Too many attempts. Try again in 15 minutes.",
+      "invalidResetLink": "This link is invalid or has expired.",
+      "notLoggedIn": "Your session has expired. Please sign in again."
+    },
+    "messages": {
+      "resetSent": "If the email matches an account, you'll shortly receive a link to reset your password.",
+      "profileSaved": "Details saved."
+    }
   }
 }

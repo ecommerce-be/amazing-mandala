@@ -11,6 +11,11 @@ export const routing = defineRouting({
     '/un-mandala-per-sempre': { it: '/un-mandala-per-sempre', en: '/a-mandala-forever' },
     '/carrello': { it: '/carrello', en: '/cart' },
     '/ordine/confermato': { it: '/ordine/confermato', en: '/order/confirmed' },
+    '/account': '/account',
+    '/account/accedi': { it: '/account/accedi', en: '/account/login' },
+    '/account/registrati': { it: '/account/registrati', en: '/account/register' },
+    '/account/password-dimenticata': { it: '/account/password-dimenticata', en: '/account/forgot-password' },
+    '/account/nuova-password': { it: '/account/nuova-password', en: '/account/reset-password' },
   },
 })
 

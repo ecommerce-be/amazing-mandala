@@ -2,6 +2,7 @@ import { useTranslations } from 'next-intl'
 
 import { Link } from '@/i18n/navigation'
 
+import { AccountLink } from './AccountLink'
 import { CartLink } from './CartLink'
 import { LocaleSwitcher } from './LocaleSwitcher'
 import { LogoMark } from './Logo'
@@ -23,6 +24,7 @@ export function SiteHeader() {
           <Link href="/un-mandala-per-sempre" className="underline-offset-4 hover:underline">
             {t('nav.about')}
           </Link>
+          <AccountLink />
           <CartLink />
           <LocaleSwitcher />
         </nav>

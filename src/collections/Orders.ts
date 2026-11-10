@@ -98,6 +98,13 @@ export const Orders: CollectionConfig = {
       ],
     },
     {
+      name: 'customer',
+      label: { it: 'Account cliente', en: 'Customer account' },
+      type: 'relationship',
+      relationTo: 'customers',
+      admin: { readOnly: true, description: 'Vuoto se l\'acquisto è stato fatto senza account.' },
+    },
+    {
       type: 'row',
       fields: [
         { name: 'customerName', label: { it: 'Cliente', en: 'Customer' }, type: 'text' },

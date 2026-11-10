@@ -24,7 +24,7 @@ export const Artworks: CollectionConfig = {
   defaultSort: '-createdAt',
   access: {
     read: ({ req }) => {
-      if (req.user) return true
+      if (req.user?.collection === 'users') return true
       const onlyPublic: Where = { status: { in: PUBLIC_STATUSES } }
       return onlyPublic
     },

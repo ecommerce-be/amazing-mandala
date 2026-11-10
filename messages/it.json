@@ -123,5 +123,60 @@
     "body": "Abbiamo ricevuto il tuo ordine. Il quadro verrà imballato con cura e spedito con tracking.",
     "bodyWithEmail": "Abbiamo ricevuto il tuo ordine. Il quadro verrà imballato con cura e spedito con tracking: ti scriveremo a {email}.",
     "backToShop": "Torna al negozio"
+  },
+  "account": {
+    "navLogin": "Accedi",
+    "navAccount": "Il mio account",
+    "title": "Il mio account",
+    "hello": "Ciao {name}.",
+    "logout": "Esci",
+    "ordersTitle": "I miei ordini",
+    "noOrders": "Non hai ancora fatto ordini.",
+    "tracking": "Spedizione BRT",
+    "trackParcel": "Segui la spedizione",
+    "profileTitle": "I miei dati",
+    "save": "Salva",
+    "firstName": "Nome",
+    "lastName": "Cognome",
+    "phone": "Telefono",
+    "email": "Email",
+    "password": "Password",
+    "newPassword": "Nuova password",
+    "passwordHint": "Almeno 8 caratteri.",
+    "loginTitle": "Accedi",
+    "loginSubmit": "Accedi",
+    "forgotLink": "Password dimenticata?",
+    "noAccount": "Non hai un account?",
+    "registerLink": "Registrati",
+    "registerTitle": "Crea un account",
+    "registerIntro": "Con un account vedi i tuoi ordini e segui le spedizioni.",
+    "registerSubmit": "Crea account",
+    "haveAccount": "Hai già un account?",
+    "loginLink": "Accedi",
+    "forgotTitle": "Password dimenticata",
+    "forgotIntro": "Inserisci l'email del tuo account: ti mandiamo un link per sceglierne una nuova.",
+    "forgotSubmit": "Invia il link",
+    "backToLogin": "Torna all'accesso",
+    "resetTitle": "Nuova password",
+    "resetSubmit": "Salva la password",
+    "status": {
+      "paid": "Pagato, in preparazione",
+      "shipped": "Spedito",
+      "delivered": "Consegnato",
+      "refunded": "Rimborsato"
+    },
+    "errors": {
+      "invalidEmail": "Controlla l'indirizzo email.",
+      "shortPassword": "La password deve avere almeno 8 caratteri.",
+      "emailTaken": "Esiste già un account con questa email. Accedi oppure recupera la password.",
+      "wrongCredentials": "Email o password non corrette.",
+      "locked": "Troppi tentativi. Riprova tra 15 minuti.",
+      "invalidResetLink": "Il link non è valido o è scaduto.",
+      "notLoggedIn": "La sessione è scaduta. Accedi di nuovo."
+    },
+    "messages": {
+      "resetSent": "Se l'email corrisponde a un account, riceverai a breve il link per reimpostare la password.",
+      "profileSaved": "Dati salvati."
+    }
   }
 }
