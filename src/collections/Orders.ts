@@ -1,5 +1,6 @@
 import type { CollectionConfig, Field } from 'payload'
 
+import { shippedNotification } from '../emails/orderEmails'
 import { isAdmin } from '../access'
 
 const eur = (cents: unknown) =>
@@ -41,7 +42,28 @@ export const Orders: CollectionConfig = {
     delete: isAdmin,
   },
   hooks: {
+    // Quando l'ordine passa a "Spedito" il cliente riceve l'email con il tracking
+    afterChange: [
+      async ({ doc, previousDoc, operation, req }) => {
+        if (operation !== 'update' || doc.status !== 'shipped' || previousDoc?.status === 'shipped' || !doc.email) {
+          return doc
+        }
+        try {
+          const mail = shippedNotification(doc)
+          await req.payload.sendEmail({ to: doc.email, subject: mail.subject, html: mail.html })
+        } catch (err) {
+          req.payload.logger.error({ err }, `Email di spedizione non inviata per ${doc.orderNumber}`)
+        }
+        return doc
+      },
+    ],
     beforeChange: [
+      ({ data, originalDoc }) => {
+        if (data.status === 'shipped' && originalDoc?.status !== 'shipped' && !data.shippedAt) {
+          data.shippedAt = new Date().toISOString()
+        }
+        return data
+      },
       ({ data, operation }) => {
         if (operation === 'create' && !data.orderNumber) {
           const d = new Date()
@@ -129,8 +151,20 @@ export const Orders: CollectionConfig = {
     {
       type: 'row',
       fields: [
-        { name: 'trackingNumber', label: { it: 'Numero di tracking', en: 'Tracking number' }, type: 'text' },
-        { name: 'trackingUrl', label: { it: 'Link tracking', en: 'Tracking link' }, type: 'text' },
+        {
+          name: 'trackingNumber',
+          label: { it: 'Numero di spedizione BRT', en: 'BRT tracking number' },
+          type: 'text',
+          // Per mettere l'ordine su "Spedito" serve il numero: finisce nell'email al cliente
+          validate: (value: string | null | undefined, { siblingData }: { siblingData: Partial<{ status: string }> }) =>
+            siblingData?.status === 'shipped' && !value ? 'Inserisci il numero di spedizione prima di segnare l\'ordine come spedito.' : true,
+        },
+        {
+          name: 'trackingUrl',
+          label: { it: 'Link di tracciamento', en: 'Tracking link' },
+          type: 'text',
+          admin: { description: 'Incolla il link di tracciamento BRT; se vuoto, l\'email rimanda a brt.it.' },
+        },
       ],
     },
     { name: 'notes', label: { it: 'Note interne', en: 'Internal notes' }, type: 'textarea' },
@@ -139,6 +173,7 @@ export const Orders: CollectionConfig = {
     { name: 'locale', label: { it: 'Lingua', en: 'Language' }, type: 'text', admin: { position: 'sidebar', readOnly: true } },
     { name: 'stripeSessionId', label: 'Stripe session', type: 'text', unique: true, index: true, admin: { position: 'sidebar', readOnly: true } },
     { name: 'stripePaymentIntentId', label: 'Stripe payment', type: 'text', admin: { position: 'sidebar', readOnly: true } },
+    { name: 'shippedAt', label: { it: 'Spedito il', en: 'Shipped at' }, type: 'date', admin: { position: 'sidebar', readOnly: true, date: { pickerAppearance: 'dayAndTime' } } },
     { name: 'paidAt', label: { it: 'Pagato il', en: 'Paid at' }, type: 'date', admin: { position: 'sidebar', readOnly: true, date: { pickerAppearance: 'dayAndTime' } } },
   ],
 }

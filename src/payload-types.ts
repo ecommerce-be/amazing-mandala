@@ -309,12 +309,16 @@ export interface Order {
   shippingEur?: string | null;
   totalEur?: string | null;
   trackingNumber?: string | null;
+  /**
+   * Incolla il link di tracciamento BRT; se vuoto, l'email rimanda a brt.it.
+   */
   trackingUrl?: string | null;
   notes?: string | null;
   country?: string | null;
   locale?: string | null;
   stripeSessionId?: string | null;
   stripePaymentIntentId?: string | null;
+  shippedAt?: string | null;
   paidAt?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -504,6 +508,7 @@ export interface OrdersSelect<T extends boolean = true> {
   locale?: T;
   stripeSessionId?: T;
   stripePaymentIntentId?: T;
+  shippedAt?: T;
   paidAt?: T;
   updatedAt?: T;
   createdAt?: T;

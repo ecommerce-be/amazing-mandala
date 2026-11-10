@@ -62,3 +62,18 @@ ${summary(order, 'it')}
 <p style="margin-top:24px"><a href="${adminUrl}" style="color:${C.red}">Apri l'ordine nel pannello</a></p>`)
   return { subject, html }
 }
+
+export function shippedNotification(order: Order) {
+  const locale = order.locale === 'en' ? 'en' : 'it'
+  const it = locale === 'it'
+  const link = order.trackingUrl || 'https://www.brt.it/'
+  const subject = it ? `Il tuo ordine ${order.orderNumber} è partito` : `Your order ${order.orderNumber} has shipped`
+  const html = layout(`
+<p style="font-size:20px;margin:0 0 16px">${it ? 'Il tuo quadro è in viaggio' : 'Your piece is on its way'}${order.customerName ? `, ${esc(order.customerName.split(' ')[0])}` : ''}.</p>
+<p>${it ? `Abbiamo affidato l'ordine <strong>${order.orderNumber}</strong> a BRT. Numero di spedizione:` : `We've handed order <strong>${order.orderNumber}</strong> to BRT. Tracking number:`}</p>
+<p style="font-size:20px;letter-spacing:1px;margin:8px 0 16px"><strong>${esc(order.trackingNumber)}</strong></p>
+<p><a href="${esc(link)}" style="display:inline-block;background:${C.ink};color:#f6efe2;text-decoration:none;padding:10px 18px;border-radius:6px">${it ? 'Segui la spedizione' : 'Track your parcel'}</a></p>
+${summary(order, locale)}
+<p style="color:${C.soft};font-size:14px;margin-top:24px">${it ? 'Per qualsiasi domanda rispondi a questa email.' : 'If you have any questions, just reply to this email.'}</p>`)
+  return { subject, html }
+}
